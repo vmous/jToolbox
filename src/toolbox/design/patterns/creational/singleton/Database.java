@@ -3,8 +3,8 @@ package toolbox.design.patterns.creational.singleton;
 import java.util.UUID;
 
 /**
- * Singeton. Defines an instance operation for creating and accessing the unique
- * instance. This variation is not thread-safe.
+ * Singleton. Defines an instance operation for creating and accessing the
+ * unique instance. This variation is not thread-safe.
  *
  * @author billy
  *
