@@ -107,7 +107,7 @@ public class URLManipulator {
      * @throws An {@code java.io.IOException} if an input or output exception
      *         occured.
      */
-    public static String getURL(URL url)
+    public static String getURLToString(URL url)
             throws IOException {
         StringWriter sw = new StringWriter();
         // uses a StringWriter as argument
@@ -170,7 +170,7 @@ public class URLManipulator {
      */
     public static Vector<String> extractLinks(URL url, boolean full)
             throws IOException {
-        return extractLinks(getURL(url), full);
+        return extractLinks(getURLToString(url), full);
     }
 
     /**
@@ -187,7 +187,7 @@ public class URLManipulator {
      */
     public static Map<String, String> extractLinksWithText(URL url)
             throws IOException {
-        return extractLinksWithText(getURL(url));
+        return extractLinksWithText(getURLToString(url));
     }
 
     /**
