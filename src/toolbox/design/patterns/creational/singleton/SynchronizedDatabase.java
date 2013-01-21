@@ -3,16 +3,16 @@ package toolbox.design.patterns.creational.singleton;
 import java.util.UUID;
 
 /**
- * Singleton. Defines an instance operation accessing the unique instance.
- * Initialization is left to the virtual machine. This variation is thread-safe.
+ * Singleton. Defines an instance operation for creating and accessing the
+ * unique instance. This variation is thread-safe.
  *
  * @author billy
  *
  */
-public class ElegantlySynchronisedDatabase {
+public class SynchronizedDatabase {
 
-    /** The unique instance instantiated by the virtual machine. */
-    private static ElegantlySynchronisedDatabase instance = new ElegantlySynchronisedDatabase();
+    /** The unique instance. */
+    private static SynchronizedDatabase instance;
 
     private final UUID uuid;
     private final int record;
@@ -20,18 +20,21 @@ public class ElegantlySynchronisedDatabase {
     /**
      * Constructor is made private.
      */
-    private ElegantlySynchronisedDatabase() {
+    private SynchronizedDatabase() {
         this.uuid = UUID.randomUUID();
         this.record = 0;
     }
 
     /**
-     * Static member method simply for accessing the unique instance in a
-     * thread-safe, synchronized manner.
+     * Static member method for creating (if necessary) and accessing the unique
+     * instance in a thread-safe, synchronized manner.
      *
      * @return the unique instance
      */
-    public static synchronized ElegantlySynchronisedDatabase getInstance() {
+    public static synchronized SynchronizedDatabase getInstance() {
+        if (instance == null)
+            instance = new SynchronizedDatabase();
+
         return instance;
     }
 
