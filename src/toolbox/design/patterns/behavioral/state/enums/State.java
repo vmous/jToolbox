@@ -1,10 +1,9 @@
 package toolbox.design.patterns.behavioral.state.enums;
 
 /**
- * States enumeration.
+ * The State behavioral design pattern implemented using an enumeration.
  *
  * @author billy
- *
  */
 public enum State {
 
