@@ -15,7 +15,7 @@ public class IteratorTest extends TestCase {
     private final String[] books = {
             "Design Patterns",
             "Tractatus Logico-Philosophicus",
-            "Modern Operating Systems",
+            "Über das Sehn und die Farben",
             "Principia Mathematica"
             };
 
