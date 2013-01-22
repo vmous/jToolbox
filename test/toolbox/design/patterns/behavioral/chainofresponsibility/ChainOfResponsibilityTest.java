@@ -8,10 +8,6 @@ import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 
-import toolbox.design.patterns.behavioral.chainofresponsibility.Application;
-import toolbox.design.patterns.behavioral.chainofresponsibility.FrontEnd;
-import toolbox.design.patterns.behavioral.chainofresponsibility.IntermediateLayer;
-
 /**
  * Unit test for the Chain of Responsibility behavioral design pattern.
  *
