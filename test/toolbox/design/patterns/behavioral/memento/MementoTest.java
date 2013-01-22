@@ -9,7 +9,7 @@ import org.junit.Before;
 import junit.framework.TestCase;
 
 /**
- * Unit test for the Mediator behavioral design pattern. Acts also as the pattern's Caretaker role.
+ * Unit test for the Memento behavioral design pattern. Acts also as the pattern's Caretaker role.
  *
  * @author billy
  *
