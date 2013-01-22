@@ -13,8 +13,9 @@ import toolbox.design.patterns.behavioral.chainofresponsibility.FrontEnd;
 import toolbox.design.patterns.behavioral.chainofresponsibility.IntermediateLayer;
 
 /**
- * @author billy
+ * Unit test for the Chain of Responsibility behavioral design pattern.
  *
+ * @author billy
  */
 public class ChainOfResponsibilityTest extends TestCase {
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
