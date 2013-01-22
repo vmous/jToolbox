@@ -12,7 +12,6 @@ import junit.framework.TestCase;
  * Unit test for the Memento behavioral design pattern. Acts also as the pattern's Caretaker role.
  *
  * @author billy
- *
  */
 public class MementoTest extends TestCase {
 
