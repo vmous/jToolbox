@@ -35,11 +35,11 @@ public class Amazon implements Checkout {
 
     @Override
     public void checkout(DVD dvd) {
-        double vat = 0.12;
+        double vat = 1.12;
 
         // if DVD is not of region 2 then it has greater VAT
         if (dvd.getRegion() != 2)
-            vat = 0.22;
+            vat = 1.22;
 
         total += (dvd.getPrice() * vat);
 

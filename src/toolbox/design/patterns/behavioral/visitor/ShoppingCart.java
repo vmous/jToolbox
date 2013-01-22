@@ -29,7 +29,6 @@ public class ShoppingCart {
 
     public double cost() {
         Amazon amazon = new Amazon();
-        System.out.println(amazon.getTotal());
 
         for (Item item : items) {
             item.proceed(amazon);
