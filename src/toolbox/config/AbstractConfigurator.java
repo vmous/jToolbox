@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import toolbox.config.exceptions.FailToLoadConfigurationFileException;
-
 /**
  * <p>
  * This abstract class acts as a skeleton for managers of application
@@ -15,8 +13,8 @@ import toolbox.config.exceptions.FailToLoadConfigurationFileException;
  * values.
  * </p>
  * <p>
- * It is recommended that extending concrete classes follow the Singleton
- * design pattern to ensure exactly one object is realized.
+ * The class is defined as abstract so that a concrete classes can follow the
+ * Singleton design pattern to ensure exactly one object is realized.
  * </p>
  *
  * @author billy
@@ -26,100 +24,140 @@ import toolbox.config.exceptions.FailToLoadConfigurationFileException;
 public abstract class AbstractConfigurator {
 
 	/**
-	 * The default name for the configuration file in the file system.
+	 * The default path to the default configuration file.
 	 */
-	public static final String DEFAULT_CONF_FILE_NAME = "default.conf";
+	public static final String DEFAULT_CONF_FILE_PATH = "default.conf";
+
+    /**
+     * The default header for the default configuration file.
+     */
+    public static final String DEFAULT_CONF_FILE_HEADER = "## The default configuration file. ##";
 
 	/**
-	 * The default header information in the configuration file.
+	 * The default path to the user configuration file.
 	 */
-	public static final String DEFAULT_CONF_FILE_HEADER = "## The default configuration file. ##";
+	public static final String USER_CONF_FILE_PATH = "user.conf";
 
 	/**
-	 * The name of the configuration file in the file system.
+	 * The default header for the user configuration file.
 	 */
-	private String confFileName;
+	public static final String USER_CONF_FILE_HEADER = "## The user configuration file. ##";
 
 	/**
-	 * The header information in the configuration file.
+	 * The default configuration file path.
 	 */
-	private String confFileHeader;
+	private String defaultConfFilePath;
+
+    /**
+     * The header information in the default configuration file.
+     */
+    private String defaultConfFileHeader;
+
+	/**
+	 * The user configuration file path.
+	 */
+	private String userConfFilePath;
+
+    /**
+     * The header information in the user configuration file.
+     */
+    private String userConfFileHeader;
 
 	/**
 	 * The default properties.
 	 */
-	private Properties defaultProperties;
+	protected Properties defaultProperties;
 
 	/**
 	 * The user defined properties.
 	 */
-	private Properties properties;
+	protected Properties userProperties;
 
 	/**
 	 * Constructor.
-	 *
-	 * @throws FailToLoadConfigurationFileException
 	 */
 	protected AbstractConfigurator() {
-		confFileName = DEFAULT_CONF_FILE_NAME;
-		confFileHeader = DEFAULT_CONF_FILE_HEADER;
+	    this.defaultConfFilePath = DEFAULT_CONF_FILE_PATH;
+	    this.defaultConfFileHeader = DEFAULT_CONF_FILE_HEADER;
 
-		// instantiate the default properties...
-		defaultProperties = new Properties();
-		// ...and load them
-		loadDefaults();
-		/*
-		 * instantiate the user properties with the default ones as fall-back
-		 * values...
-		 */
-		properties = new Properties(defaultProperties);
-
-		// ... and then try to load the user defined properties
-		try {
-			load();
-		} catch (FailToLoadConfigurationFileException flcfe) {
-			flcfe.printStackTrace();
-		}
-
-		store();
+	    this.userConfFilePath = USER_CONF_FILE_PATH;
+	    this.userConfFileHeader = USER_CONF_FILE_HEADER;
 	}
 
 	/**
-	 * Sets a user defined configuration file name.
+	 * Sets the default configuration file path.
 	 *
-	 * @param confFileName
-	 *     The configuration file name to set.
+	 * @param defaultConfFilePath
+	 *     The path to the default configuration file to set.
 	 */
-	public void setConfigurationFileName(String confFileName) {
-		this.confFileName = confFileName;
+	public void setDefaultConfFilePath(String defaultConfFilePath) {
+		this.defaultConfFilePath = defaultConfFilePath;
 	}
 
 	/**
-	 * Gets the user defined configuration file name.
+	 * Gets the default configuration file path.
 	 *
-	 * @return The configuration file name.
+	 * @return The path to the default configuration file.
 	 */
-	public String getConfigurationFileName() {
-		return confFileName;
+	public String getDefaultConfFilePath() {
+		return defaultConfFilePath;
+	}
+
+    /**
+     * Sets the default configuration file header.
+     *
+     * @param defaultConfFileHeader
+     *     The default configuration file header to set.
+     */
+    public void setDefaultConfFileHeader(String defaultConfFileHeader) {
+        this.defaultConfFileHeader = defaultConfFileHeader;
+    }
+
+    /**
+     * Gets the default configuration file header.
+     *
+     * @return The default configuration file header.
+     */
+    public String getDefaultConfFileHeader() {
+        return defaultConfFileHeader;
+    }
+
+    /**
+     * Sets the user configuration file path.
+     *
+     * @param userConfFilePath
+     *     The path to the user configuration file to set.
+     */
+    public void setUserConfFilePath(String userConfFilePath) {
+        this.userConfFilePath = userConfFilePath;
+    }
+
+    /**
+     * Gets the user configuration file path.
+     *
+     * @return The path to the user configuration file.
+     */
+    public String getUserConfFilePath() {
+        return userConfFilePath;
+    }
+
+	/**
+	 * Sets the user configuration file header.
+	 *
+	 * @param userConfFileHeader
+	 *     The user configuration file header to set.
+	 */
+	public void setUserConfFileHeader(String userConfFileHeader) {
+		this.userConfFileHeader = userConfFileHeader;
 	}
 
 	/**
-	 * Sets a user defined configuration file header.
+	 * Gets the user configuration file header.
 	 *
-	 * @param confFileHeader
-	 *     The configuration file header to set.
+	 * @return The user configuration file header.
 	 */
-	public void setConfigurationFileHeader(String confFileHeader) {
-		this.confFileHeader = confFileHeader;
-	}
-
-	/**
-	 * Gets the user defined configuration file header.
-	 *
-	 * @return The configuration file header.
-	 */
-	public String getConfigurationFileHeader() {
-		return confFileHeader;
+	public String getUserConfFileHeader() {
+		return userConfFileHeader;
 	}
 
 	/**
@@ -144,11 +182,11 @@ public abstract class AbstractConfigurator {
 	/**
 	 * Sets all the user defined properties in a single bulk operation.
 	 *
-	 * @param properties
+	 * @param userProperties
 	 *     The user properties to set.
 	 */
-	public void setProperties(Properties properties) {
-		this.properties = properties;
+	public void setUserProperties(Properties userProperties) {
+		this.userProperties = userProperties;
 	}
 
 	/**
@@ -156,21 +194,21 @@ public abstract class AbstractConfigurator {
 	 *
 	 * @return The user defined properties.
 	 */
-	public Properties getProperties() {
-		return properties;
+	public Properties getUserProperties() {
+		return userProperties;
 	}
 
 	/**
-	 * Places a property to the property list.
+	 * Places a property to the user property list.
 	 *
 	 * @param name
 	 *     The name to be placed in the property list.
 	 * @param value
-	 *     The value corresponding to <code>name</code>.
+	 *     The value corresponding to {@code name}.
 	 */
 	public void assign(String name, String value) {
-		properties.setProperty(name, value);
-		store();
+		userProperties.setProperty(name, value);
+		this.silentStore();
 	}
 
 	/**
@@ -189,7 +227,7 @@ public abstract class AbstractConfigurator {
 	 * @see AbstractConfigurator#getIntegerProperty(String)
 	 */
 	public String property(String name) {
-		return properties.getProperty(name, propertyDefault(name));
+		return this.userProperties.getProperty(name, propertyDefault(name));
 	}
 
 	/**
@@ -202,7 +240,7 @@ public abstract class AbstractConfigurator {
 	 * @return The property value of the given property name as {@code boolean}.
 	 */
 	public boolean propertyBoolean(String name) {
-		return Boolean.parseBoolean(property(name));
+		return Boolean.parseBoolean(this.property(name));
 	}
 
 	/**
@@ -215,7 +253,7 @@ public abstract class AbstractConfigurator {
 	 * @return The property value of the given property name as {@code integer}.
 	 */
 	public int propertyInteger(String name) {
-		return Integer.parseInt(property(name));
+		return Integer.parseInt(this.property(name));
 	}
 
 	/**
@@ -229,34 +267,42 @@ public abstract class AbstractConfigurator {
 	 *         {@code String} object.
 	 */
 	public String propertyDefault(String name) {
-		return defaultProperties.getProperty(name);
+		return this.defaultProperties.getProperty(name);
 	}
 
 	/**
-	 * Loads the user defined configuration properties.
-	 *
-	 * @throws FailToLoadConfigurationFileException
+	 * Loads the user configuration properties.
 	 */
-	public void load() throws FailToLoadConfigurationFileException {
+	public void loadUserProperties() {
 		try {
-			properties.load(new FileInputStream(confFileName));
-		} catch (FileNotFoundException fnfe) {
-			// throw new FailToLoadConfigurationFileException(fnfe)
-		} catch (IOException ioe) {
-			// throw new FailToLoadConfigurationFileException(ioe);
+			this.userProperties.load(new FileInputStream(this.userConfFilePath));
+		}
+		catch (FileNotFoundException fnfe) {
+		    System.err.println("File " + this.userConfFilePath + " not found.");
+		    fnfe.printStackTrace();
+		}
+		catch (IOException ioe) {
+            System.err.println("I/O failed for file " + this.userConfFilePath + ".");
+		    ioe.printStackTrace();
 		}
 	}
 
 	/**
-	 * <p>
 	 * Loads the default configuration properties.
-	 * </p>
-	 * <p>
-	 * Override this method in order to hardcode application specific
-	 * default properties.
-	 * <p>
 	 */
-	protected abstract void loadDefaults();
+	protected void loadDefaultProperties() {
+        try {
+            this.defaultProperties.load(new FileInputStream(this.defaultConfFilePath));
+        }
+        catch (FileNotFoundException fnfe) {
+            System.err.println("File " + this.defaultConfFilePath + " not found.");
+            fnfe.printStackTrace();
+        }
+        catch (IOException ioe) {
+            System.err.println("I/O failed for file " + this.defaultConfFilePath + ".");
+            ioe.printStackTrace();
+        }
+	}
 
 	/**
 	 * Stores the configuration file to persistent storage.
@@ -268,10 +314,12 @@ public abstract class AbstractConfigurator {
 		boolean success;
 
 		try {
-			FileOutputStream out = new FileOutputStream(this.confFileName);
-			this.properties.store(out, this.confFileName);
+		    System.out.println("Storing in " + this.userConfFilePath);
+			FileOutputStream out = new FileOutputStream(this.userConfFilePath);
+			this.userProperties.store(out, this.userConfFileHeader);
 			success = true;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			success = false;
 		}
 
@@ -289,10 +337,11 @@ public abstract class AbstractConfigurator {
 		boolean success;
 
 		try {
-			FileOutputStream out = new FileOutputStream(confFileName);
-			properties.store(out, confFileName);
+			FileOutputStream out = new FileOutputStream(this.userConfFilePath);
+			this.userProperties.store(out, this.userConfFileHeader);
 			success = true;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			success = false;
 		}
 
