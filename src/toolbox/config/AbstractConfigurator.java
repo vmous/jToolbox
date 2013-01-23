@@ -26,7 +26,7 @@ public abstract class AbstractConfigurator {
 	/**
 	 * The default path to the default configuration file.
 	 */
-	public static final String DEFAULT_CONF_FILE_PATH = "default.conf";
+	public static final String DEFAULT_CONF_FILE_PATH = "default.xml";
 
     /**
      * The default header for the default configuration file.
@@ -36,7 +36,7 @@ public abstract class AbstractConfigurator {
 	/**
 	 * The default path to the user configuration file.
 	 */
-	public static final String USER_CONF_FILE_PATH = "user.conf";
+	public static final String USER_CONF_FILE_PATH = "user.xml";
 
 	/**
 	 * The default header for the user configuration file.
@@ -208,7 +208,7 @@ public abstract class AbstractConfigurator {
 	 */
 	public void assign(String name, String value) {
 		userProperties.setProperty(name, value);
-		this.silentStore();
+		silentStore();
 	}
 
 	/**
@@ -223,16 +223,15 @@ public abstract class AbstractConfigurator {
 	 *         {@code String} object or {@code null} if there is no such
 	 *         property name.
 	 *
-	 * @see AbstractConfigurator#getBooleanProperty(String)
-	 * @see AbstractConfigurator#getIntegerProperty(String)
+	 * @see AbstractConfigurator#propertyBoolean(String)
+	 * @see AbstractConfigurator#propertyInteger(String)
 	 */
 	public String property(String name) {
 		return this.userProperties.getProperty(name, propertyDefault(name));
 	}
 
 	/**
-	 * Gets the property value of the given property name as a {@code boolean}
-	 * representation.
+	 * Gets the property value of the given property name as a {@code boolean}.
 	 *
 	 * @param name
 	 *     The property name.
@@ -244,13 +243,12 @@ public abstract class AbstractConfigurator {
 	}
 
 	/**
-	 * Gets the property value of the given property name as an {@code integer}
-	 * representation.
+	 * Gets the property value of the given property name as an {@code int}.
 	 *
 	 * @param name
 	 *     The property name.
 	 *
-	 * @return The property value of the given property name as {@code integer}.
+	 * @return The property value of the given property name as {@code int}.
 	 */
 	public int propertyInteger(String name) {
 		return Integer.parseInt(this.property(name));
@@ -265,17 +263,45 @@ public abstract class AbstractConfigurator {
 	 *
 	 * @return The default property value of the given property name as a
 	 *         {@code String} object.
+     *
+     * @see AbstractConfigurator#propertyDefaultBoolean(String)
+     * @see AbstractConfigurator#propertyDefaultInteger(String)
 	 */
 	public String propertyDefault(String name) {
 		return this.defaultProperties.getProperty(name);
 	}
+
+    /**
+     * Gets the default property value of the given property name as a
+     * {@code boolean}.
+     *
+     * @param name
+     *     The property name.
+     *
+     * @return The property value of the given property name as {@code boolean}.
+     */
+    public boolean propertyDefaultBoolean(String name) {
+        return Boolean.parseBoolean(this.propertyDefault(name));
+    }
+
+    /**
+     * Gets the default property value of the given property name as an {@code int}.
+     *
+     * @param name
+     *     The property name.
+     *
+     * @return The property value of the given property name as {@code int}.
+     */
+    public int propertyDefaultInteger(String name) {
+        return Integer.parseInt(this.propertyDefault(name));
+    }
 
 	/**
 	 * Loads the user configuration properties.
 	 */
 	public void loadUserProperties() {
 		try {
-			this.userProperties.load(new FileInputStream(this.userConfFilePath));
+		    this.userProperties.loadFromXML(new FileInputStream(this.userConfFilePath));
 		}
 		catch (FileNotFoundException fnfe) {
 		    System.err.println("File " + this.userConfFilePath + " not found.");
@@ -292,7 +318,7 @@ public abstract class AbstractConfigurator {
 	 */
 	protected void loadDefaultProperties() {
         try {
-            this.defaultProperties.load(new FileInputStream(this.defaultConfFilePath));
+            this.defaultProperties.loadFromXML(new FileInputStream(this.defaultConfFilePath));
         }
         catch (FileNotFoundException fnfe) {
             System.err.println("File " + this.defaultConfFilePath + " not found.");
@@ -316,7 +342,7 @@ public abstract class AbstractConfigurator {
 		try {
 		    System.out.println("Storing in " + this.userConfFilePath);
 			FileOutputStream out = new FileOutputStream(this.userConfFilePath);
-			this.userProperties.store(out, this.userConfFileHeader);
+			this.userProperties.storeToXML(out, this.userConfFileHeader, "UTF-8");
 			success = true;
 		}
 		catch (IOException e) {
@@ -338,7 +364,7 @@ public abstract class AbstractConfigurator {
 
 		try {
 			FileOutputStream out = new FileOutputStream(this.userConfFilePath);
-			this.userProperties.store(out, this.userConfFileHeader);
+            this.userProperties.storeToXML(out, this.userConfFileHeader, "UTF-8");
 			success = true;
 		}
 		catch (IOException e) {
