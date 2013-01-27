@@ -4,19 +4,20 @@ import java.util.UUID;
 
 /**
  * <p>
- * Singleton. Defines an instance operation for creating and accessing the
- * unique instance. This variation is thread-safe and it used the
- * double-checked locking idiom.
+ * Singleton. Restricts the instantiation of a class to one object.
  * </p>
  *
  * <p>
- * This idiom offers the advantage that the instance getter is far more
- * efficient since it does not need to be synchronized as a whole. The only
- * portion synchronized is the one creating the singleton object. Thus, only
- * the few threads trying to access the instance, at the beginning (when the
- * singleton needs to be created), need to be synchronized. The idiom requires
- * the instance be volatile so it is applicable only on J2SE 5.0 and above. The
- * problem with the previous versions is described in
+ * The approach used here is referred to as <emph>lazy initialization</emph>
+ * since the singleton instance is created the first time it is needed.
+ * Moreover, this variation applies the double-check lock idiom which offers
+ * the advantage that the instance getter is far more efficient since it does
+ * not need to be synchronized as a whole. The only portion synchronized is the
+ * one creating the singleton object. Thus, only the few threads trying to
+ * access the instance, at the beginning (when the singleton needs to be
+ * created), need to be synchronized. The idiom requires the instance be
+ * {@code volatile} so it is applicable only on J2SE 5.0 and above. The problem
+ * with the previous J2SE versions is described in more detail in
  * <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">
  * The "Double-Checked Locking is Broken" Declaration
  * </a>.
@@ -26,6 +27,10 @@ import java.util.UUID;
  * In general you double-checked locking should be avoided if possible since it
  * is difficult to get it right and if you get it wrong it is difficult to find
  * the error.
+ * </p>
+ *
+ * <p>
+ * This implementation is thread-safe.
  * </p>
  *
  * @author billy

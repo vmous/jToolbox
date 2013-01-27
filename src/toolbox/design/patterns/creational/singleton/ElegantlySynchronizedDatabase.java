@@ -3,16 +3,32 @@ package toolbox.design.patterns.creational.singleton;
 import java.util.UUID;
 
 /**
- * Singleton. Defines an instance operation accessing the unique instance.
- * Initialization is left to the virtual machine. This variation is thread-safe.
+ * <p>
+ * Singleton. Restricts the instantiation of a class to one object.
+ * </p>
+ *
+ * <p>
+ * The approach used here is referred to as <emph>eager initialization</emph>
+ * since the singleton instance is not created when it is first needed but is
+ * left to the JVM when the class is loaded.
+ * </p>
+ *
+ * <p>
+ * This implementation is thread-safe
+ * </p>
  *
  * @author billy
  *
  */
 public class ElegantlySynchronizedDatabase {
 
-    /** The unique instance instantiated by the virtual machine. */
-    private static ElegantlySynchronizedDatabase instance = new ElegantlySynchronizedDatabase();
+    /**
+     * The unique instance.
+     *
+     * The {@code final} keyword means that the instance cannot be redefined,
+     * ensuring that one (and only one) instance ever exists.
+     */
+    private static final ElegantlySynchronizedDatabase instance = new ElegantlySynchronizedDatabase();
 
     private final UUID uuid;
     private final int record;
@@ -27,11 +43,13 @@ public class ElegantlySynchronizedDatabase {
 
     /**
      * Static member method simply for accessing the unique instance in a
-     * thread-safe, synchronized manner.
+     * thread-safe, synchronized manner. Note, that there is no need to
+     * synchronize the method, meaning all threads will see the same instance
+     * and no (expensive) locking is required.
      *
-     * @return the unique instance
+     * @return The unique instance
      */
-    public static synchronized ElegantlySynchronizedDatabase getInstance() {
+    public static ElegantlySynchronizedDatabase getInstance() {
         return instance;
     }
 

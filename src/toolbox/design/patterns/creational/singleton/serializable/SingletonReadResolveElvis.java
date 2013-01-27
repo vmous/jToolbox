@@ -6,6 +6,10 @@ import java.util.Arrays;
 
 /**
  * <p>
+ * Singleton. Restricts the instantiation of a class to one object.
+ * </p>
+ *
+ * <p>
  * Through the serializable tools, someone can write a singleton instance to
  * disk, and then read it back up, effectively getting a new instance. Even
  * though the singleton pattern dictates the constructor to be private, the

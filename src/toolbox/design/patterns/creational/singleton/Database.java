@@ -3,8 +3,13 @@ package toolbox.design.patterns.creational.singleton;
 import java.util.UUID;
 
 /**
- * Singleton. Defines an instance operation for creating and accessing the
- * unique instance. This variation is not thread-safe.
+ * <p>
+ * Singleton. Restricts the instantiation of a class to one object.
+ * </p>
+ *
+ * <p>
+ * This implementation is <emph>not</emph> thread-safe.
+ * </p>
  *
  * @author billy
  *
