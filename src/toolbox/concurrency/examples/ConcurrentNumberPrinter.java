@@ -9,13 +9,18 @@ package toolbox.concurrency.examples;
 public class ConcurrentNumberPrinter implements Runnable {
 
     public static final int MAX = 10;
-    // This should be static in order all threads to share it and thus be
-    // able to wait/notify on the same lock!
-    static Object lock  = new Object();
+
+    // In this implementation the two variables below should be static in order
+    // to be associated with both instances of the class.
+    // The lock is needed by both threads in order to be able to able to
+    // wait/notify on the same lock.
+    public static Object lock  = new Object();
+    // Also both threads should be able to read the same shared flag that
+    // denotes whose turn is to write to the output.
+    public static boolean isEvenTurn = false;
 
     private final boolean amEven;
     private final String kind;
-    public static boolean isEvenTurn = false;
 
     public ConcurrentNumberPrinter(boolean amEven) {
         this.amEven = amEven;
