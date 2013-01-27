@@ -1,4 +1,4 @@
-package toolbox.concurrency.examples;
+package toolbox.concurrency.examples.producerconsumer;
 
 import java.io.IOException;
 import java.io.PipedReader;
@@ -19,7 +19,7 @@ import java.io.PipedWriter;
  *
  * @author billy
  */
-public class CPPiped {
+public class ProducerConsumerPipe {
 
     private static final int MAX = 10;
 

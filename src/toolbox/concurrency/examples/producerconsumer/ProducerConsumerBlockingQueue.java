@@ -1,4 +1,4 @@
-package toolbox.concurrency.examples;
+package toolbox.concurrency.examples.producerconsumer;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
@@ -19,7 +19,7 @@ import java.util.concurrent.SynchronousQueue;
  *
  * @author billy
  */
-public class CPBlockingQueue {
+public class ProducerConsumerBlockingQueue {
 
     private static final int MAX = 100;
 

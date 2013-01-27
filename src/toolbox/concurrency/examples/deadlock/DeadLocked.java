@@ -1,4 +1,4 @@
-package toolbox.concurrency.examples;
+package toolbox.concurrency.examples.deadlock;
 
 /**
  * An example of a deadlock situation when two threads use nested synchronized
@@ -14,7 +14,7 @@ public class DeadLocked  extends Thread {
 
     public void method1() {
         synchronized (lock1) {
-            delay(500);  //some <span class="IL_AD" id="IL_AD5">operation
+            delay(500);  // some operation
             System.out.println("method1: " + Thread.currentThread().getName());
             synchronized (lock2) {
                 System.out.println("method1 is executing .... ");
