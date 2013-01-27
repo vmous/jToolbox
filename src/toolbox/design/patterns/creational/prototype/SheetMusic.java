@@ -2,10 +2,10 @@ package toolbox.design.patterns.creational.prototype;
 
 import java.util.Vector;
 
-import toolbox.design.patterns.creational.prototype.Note.Accidental;
-import toolbox.design.patterns.creational.prototype.Note.Helmholtz;
-import toolbox.design.patterns.creational.prototype.Note.Octave;
-import toolbox.design.patterns.creational.prototype.Note.Value;
+import static toolbox.design.patterns.creational.prototype.Note.Helmholtz;
+import static toolbox.design.patterns.creational.prototype.Note.Octave;
+import static toolbox.design.patterns.creational.prototype.Note.Accidental;
+import static toolbox.design.patterns.creational.prototype.Note.Value;
 
 /**
  * Client. Creates objects by asking the prototype to clone itself.

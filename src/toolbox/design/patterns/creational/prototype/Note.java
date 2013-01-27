@@ -9,19 +9,19 @@ package toolbox.design.patterns.creational.prototype;
  */
 public class Note implements Cloneable {
 
-    public enum Helmholtz {
+    public static enum Helmholtz {
         C, D, E, F, G, A, B
     }
 
-    public enum Octave {
+    public static enum Octave {
         SUB_SUB_CONTRA, SUB_CONTRA, CONTRA, GREAT, SMALL, ONE_LINED, TWO_LINED, THREE_LINED, FOUR_LINED, FIVE_LINED, SIX_LINED
     }
 
-    public enum Accidental {
+    public static enum Accidental {
         NONE, DOUBLE_SHARP, SHARP, FLAT, DOUBLE_FLAT
     }
 
-    public enum Value {
+    public static enum Value {
         DOUBLE, WHOLE, HALF, QUARTER, EIGHTH, SIXTEENTH, THIRTY_SECOND, SIXTY_FORTH, HANDRED_TWENTY_EIGHTH
     }
 
