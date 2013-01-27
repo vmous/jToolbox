@@ -48,8 +48,8 @@ public class ConcurrentNumberPrinter implements Runnable {
                 try {
                     lock.wait();
                 }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
+                catch (InterruptedException ie) {
+                    ie.printStackTrace();
                 }
             }
 
@@ -65,8 +65,8 @@ public class ConcurrentNumberPrinter implements Runnable {
                 try {
                     lock.wait();
                 }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
+                catch (InterruptedException ie) {
+                    ie.printStackTrace();
                 }
             }
 

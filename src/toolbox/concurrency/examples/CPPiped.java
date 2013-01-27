@@ -20,6 +20,7 @@ import java.io.PipedWriter;
  * @author billy
  */
 public class CPPiped {
+
     private static final int MAX = 10;
 
     public static class NumberWriter implements Runnable {
@@ -36,19 +37,19 @@ public class CPPiped {
         public void run() {
             int i = 1;
             while (i <= MAX) {
-                try {
-                    if ( (amEven && (i % 2) == 0) || (!amEven && (i % 2) != 0) ) {
+                if ( (amEven && (i % 2) == 0) || (!amEven && (i % 2) != 0) ) {
+                    try {
                         writer.write(i);
                     }
-
-                    ++i;
+                    catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
                 }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+                ++i;
             }
         }
-    }
+
+    } // class NumberWriter
 
     public static void main(String[] args) {
 
@@ -77,8 +78,8 @@ public class CPPiped {
         int odd =0;
         int even=0;
 
-        try {
-            while (odd != -1) {
+        while (odd != -1) {
+            try {
                 odd = readOdd.read();
                 even = readEven.read();
 
@@ -86,10 +87,12 @@ public class CPPiped {
                     System.out.println("match found " + odd + " + " + even + " = " + (odd + even));
                 }
             }
-
-        } catch (IOException e) {
-            System.exit(1);
+            catch (IOException ioe) {
+                ioe.printStackTrace();
+                System.exit(1);
+            }
         }
 
     }
+
 }
