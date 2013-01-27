@@ -15,8 +15,8 @@ public class ConcurrentNumberPrinter implements Runnable {
     // The lock is needed by both threads in order to be able to able to
     // wait/notify on the same lock.
     public static Object lock  = new Object();
-    // Also both threads should be able to read the same shared flag that
-    // denotes whose turn is to write to the output.
+    // Also both threads should be able to spin on the same conditional variable,
+    // which in this case denotes whose turn is to write to the output.
     public static boolean isEvenTurn = false;
 
     private final boolean amEven;
