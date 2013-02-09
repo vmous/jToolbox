@@ -2,6 +2,7 @@ bin/
 doc/
 .classpath
 .project
+target/
 
 # OS noise
 .directory
