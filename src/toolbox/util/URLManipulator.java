@@ -13,10 +13,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 public class URLManipulator {
     public static final String DISALLOW = "Disallow:";
@@ -29,8 +29,9 @@ public class URLManipulator {
      * @param writer
      *     The writer where the URL content will be copied to.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static void downloadURL(URL url, Writer writer)
             throws IOException {
@@ -53,8 +54,9 @@ public class URLManipulator {
      * @param  os
      *     The output stream where the URL content will be written to.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static void downloadURL(URL url, OutputStream os)
             throws IOException {
@@ -79,8 +81,9 @@ public class URLManipulator {
      * @param  os
      *     The output stream where the URL content will be copied to.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static void downloadURL(HttpURLConnection httpUrlConn, OutputStream os)
             throws IOException {
@@ -101,11 +104,12 @@ public class URLManipulator {
      * @param  url
      *     The URL whose content will be downloaded.
      *
-     * @return A {@code java.lang.String} object containing the URL
-     *         content.
+     * @return
+     *     A {@code java.lang.String} object containing the URL content.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static String streamURLToString(URL url)
             throws IOException {
@@ -123,8 +127,9 @@ public class URLManipulator {
      * @param filename
      *     The path to the file where the URL content will be be stored in.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static void streamURLtoFile(URL url, String filename)
             throws IOException {
@@ -143,8 +148,9 @@ public class URLManipulator {
      * @param filename
      *     The path to the file where the URL content will be be stored in.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static void streamURLtoFile(HttpURLConnection httpUrlConn,
             String filename)
@@ -161,14 +167,18 @@ public class URLManipulator {
      * @param url
      *     The URL whose links are to be extracted.
      * @param full
-     *     TODO
+     *     Set it to {@code true} if you want to extract the {@code src}
+     *     attributes as well; {@code false} otherwise.
      *
-     * @return A {@code java.util.Vector<Sting>} containing the links extracted
-     *         from the URL.
+     * @return
+     *     A {@code java.util.Set<Sting>} containing the links extracted from
+     *     the URL.
      *
-     * @throws IOException if an input or output exception occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
-    public static Vector<String> extractLinks(URL url, boolean full)
+    public static Set<String> extractLinks(URL url, boolean full)
             throws IOException {
         return extractLinks(streamURLToString(url), full);
     }
@@ -179,11 +189,13 @@ public class URLManipulator {
      * @param url
      *     The URL whose links and corresponding text are to be extracted.
      *
-     * @return A {@code java.util.Map<String, String>} containing the links and
-     *         their corresponding text extracted from the URL.
+     * @return
+     *     A {@code java.util.Map<String, String>} containing the links and
+     *     their corresponding text extracted from the URL.
      *
-     * @throws An {@code java.io.IOException} if an input or output exception
-     *         occured.
+     * @throws
+     *     An {@code java.io.IOException} if an input or output exception
+     *     occurred.
      */
     public static Map<String, String> extractLinksWithText(URL url)
             throws IOException {
@@ -206,14 +218,19 @@ public class URLManipulator {
      * @param page
      *     The content of the URL given as a raw lower-cased string.
      * @param full
-     *     TODO
+     *     Set it to {@code true} if you want to extract the {@code src}
+     *     attributes as well; {@code false} otherwise.
      *
-     * @return A {@code java.util.Vector<String>} object containing the links
-     *         extracted from the URL.
+     * @return
+     *     A {@code java.util.Set<String>} object containing the links
+     *     extracted from the URL.
+     *
+     * TODO: I have to change the search of the attributes to a pattern
+     * matching manner (i.e., href|src) so that we end up with one while loop.
      */
-    public static Vector<String> extractLinks(String rawPage, String page, boolean full) {
+    public static Set<String> extractLinks(String rawPage, String page, boolean full) {
         int index = 0;
-        Vector<String> links = new Vector<String>();
+        Set<String> links = new LinkedHashSet<String>();
         while ((index = page.indexOf("href", index)) != -1) {
             //if ((index = page.indexOf("href", index)) == -1)
             //break;
@@ -222,8 +239,8 @@ public class URLManipulator {
             String remaining = rawPage.substring(++index);
             StringTokenizer st = new StringTokenizer(remaining, "\t\n\r\"'>#");
             String strLink = st.nextToken();
-            if (! links.contains(strLink))
-                links.add(strLink);
+
+            links.add(strLink);
         }
 
         if(full) {
@@ -235,8 +252,8 @@ public class URLManipulator {
                 String remaining = rawPage.substring(++index);
                 StringTokenizer st = new StringTokenizer(remaining, "\t\n\r\"'>#");
                 String strLink = st.nextToken();
-                if (!links.contains(strLink))
-                    links.add(strLink);
+
+                links.add(strLink);
             }
         }
         return links;
@@ -258,8 +275,9 @@ public class URLManipulator {
      * @param page
      *     The content of the URL given as a raw lower-cased string
      *
-     * @return A {@code java.util.Map<String, String>} containing the links and
-     *         their corresponding text extracted from the URL.
+     * @return
+     *     A {@code java.util.Map<String, String>} containing the links and
+     *     their corresponding text extracted from the URL.
      */
     public static Map<String, String> extractLinksWithText(String rawPage, String page) {
         int index = 0;
@@ -298,9 +316,10 @@ public class URLManipulator {
      * @param  rawPage
      *     The HTML page content given as a raw string.
      *
-     * @return A {@code java.util.Vector<String>} of with the extracted links.
+     * @return
+     *     A {@code java.util.Set<String>} of with the extracted links.
      */
-    public static Vector<String> extractLinks(String rawPage, boolean full) {
+    public static Set<String> extractLinks(String rawPage, boolean full) {
         return extractLinks(rawPage, rawPage.toLowerCase().replaceAll("\\s", " "), full);
     }
 
@@ -318,8 +337,9 @@ public class URLManipulator {
      * @param rawPage
      *     The HTML page content given as a raw string.
      *
-     * @return A {@code java.util.Map<String, String>} containing the links and
-     *         their corresponding text extracted from the URL.
+     * @return
+     *     A {@code java.util.Map<String, String>} containing the links and
+     *     their corresponding text extracted from the URL.
      */
     public static Map<String, String> extractLinksWithText(String rawPage) {
         return extractLinksWithText(rawPage, rawPage.toLowerCase().replaceAll("\\s", " "));
@@ -327,7 +347,7 @@ public class URLManipulator {
 
     /**
      * <p>
-     * Extracts links from an HTML page given as a raw and a lower case string.
+     * Extracts title from an HTML page's {@code <title>} tag.
      * </p>
      *
      * <p>
@@ -341,12 +361,13 @@ public class URLManipulator {
      * @param page
      *     The content of the URL given as a raw lower-cased string.
      *
-     * @return A {@code java.util.Vector<String>} object containing the links
-     *         extracted from the URL.
+     * @return
+     *     The title of the page or the empty string if no {@code <title>} tag
+     *     was found.
      */
     public static String extractTitle(String rawPage, String page) {
         int index = 0;
-        String title = null;
+        String title = "";
         if((index = page.indexOf("<title>", index)) != -1) {
             String remaining = rawPage.substring(++index);
             StringTokenizer st = new StringTokenizer(remaining, "</title>");
@@ -363,8 +384,9 @@ public class URLManipulator {
      * @param urlPath
      *     The URL.
      *
-     * @return A concatenation of the file-system path and the URL checked for
-     *         system dependent validity.
+     * @return
+     *     A concatenation of the file-system path and the URL checked for
+     *     system dependent validity.
      */
     public static String constructSavePath(String fsPath, String urlPath) {
         if(!fsPath.endsWith(File.separator))
@@ -385,7 +407,8 @@ public class URLManipulator {
      * @param url
      *     The URL to check.
      *
-     * @return {@code true} if the URL is robot safe; {@code false} otherwise.
+     * @return
+     *     {@code true} if the URL is robot safe; {@code false} otherwise.
      */
     public static boolean isRobotSafe(URL url) {
         String strHostName = url.getHost();
@@ -448,7 +471,7 @@ public class URLManipulator {
     }
 
     /**
-     * As a standalone program this class is capable of copying a URL to a file.
+     * As a stand-alone program this class is capable of copying a URL to a file.
      *
      * @param args
      *     The command-line arguments.
