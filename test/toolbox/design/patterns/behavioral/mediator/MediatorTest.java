@@ -1,45 +1,36 @@
 package toolbox.design.patterns.behavioral.mediator;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the Mediator behavioral design pattern.
  *
  * @author billy
  */
-public class MediatorTest extends TestCase {
+public class MediatorTest {
 
     private ApplicationCommunicator communicator;
-
     private Application msn;
-
     private Application kopete;
-
     private Application mercury;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         communicator = new ApplicationCommunicator();
         msn = new DesktopApplication("Live Messager", communicator);
         kopete = new DesktopApplication("Kopete", communicator);
         mercury = new MobileApplication("Mercury Mobile", communicator);
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         communicator.addApplication(msn);
         communicator.addApplication(kopete);

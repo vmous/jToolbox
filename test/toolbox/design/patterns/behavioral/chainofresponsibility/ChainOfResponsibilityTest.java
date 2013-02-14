@@ -3,17 +3,19 @@ package toolbox.design.patterns.behavioral.chainofresponsibility;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Unit test for the Chain of Responsibility behavioral design pattern.
  *
  * @author billy
  */
-public class ChainOfResponsibilityTest extends TestCase {
+public class ChainOfResponsibilityTest {
+
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 	private final int FRONT_END_HELP = 1;
 	private final int INTERMEDIATE_LAYER_HELP = 2;
@@ -23,26 +25,21 @@ public class ChainOfResponsibilityTest extends TestCase {
 	private IntermediateLayer intermediateLayer;
 	private FrontEnd frontEnd;
 
-	@Override
     @Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		System.setOut(new PrintStream(output));
 
 		this.application = new Application(null);
 		this.intermediateLayer = new IntermediateLayer(this.application);
 		this.frontEnd = new FrontEnd(this.intermediateLayer);
-
-		super.setUp();
 	}
 
-	@Override
     @After
 	public void tearDown() throws Exception {
 		System.setOut(null);
-
-		super.tearDown();
 	}
 
+    @Test
 	public void testIt() {
         this.frontEnd.getHelp(FRONT_END_HELP);
         assertTrue(output.toString().indexOf("front end") > 0);
@@ -53,4 +50,5 @@ public class ChainOfResponsibilityTest extends TestCase {
 		this.frontEnd.getHelp(GENERAL_HELP);
 		assertTrue(output.toString().indexOf("Jazzmanian") > 0);
 	}
+
 }

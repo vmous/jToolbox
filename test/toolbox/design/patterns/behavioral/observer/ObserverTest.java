@@ -3,31 +3,28 @@ package toolbox.design.patterns.behavioral.observer;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Unit test for the Observer behavioral design pattern.
  *
  * @author billy
  */
-public class ObserverTest extends TestCase {
+public class ObserverTest {
+
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
 	private Database database;
-
 	private Archiver archiver;
 	private Client client;
 	private Boss boss;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
     @Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		System.setOut(new PrintStream(output));
 
 		this.database = new Database();
@@ -39,21 +36,14 @@ public class ObserverTest extends TestCase {
 		this.database.registerObserver(archiver);
 		this.database.registerObserver(client);
 		this.database.registerObserver(boss);
-
-		super.setUp();
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
     @After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		System.setOut(null);
-
-		super.tearDown();
 	}
 
+    @Test
 	public void testIt() {
 		this.database.editRecord("delete", "record 0");
 

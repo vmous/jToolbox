@@ -1,16 +1,17 @@
 package toolbox.design.patterns.behavioral.iterator;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the Iterator behavioral design pattern.
  *
  * @author billy
  */
-public class IteratorTest extends TestCase {
+public class IteratorTest {
 
     private final String[] books = {
             "Design Patterns",
@@ -20,27 +21,19 @@ public class IteratorTest extends TestCase {
             };
 
     private Iterator<String> itr;
-
     private BookList bookList;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         bookList = new BookList(books);
         itr = bookList.createIterator();
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         int i = 0;
 

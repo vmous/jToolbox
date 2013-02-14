@@ -1,42 +1,36 @@
 package toolbox.design.patterns.behavioral.command;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Unit test for the Command behavioral design pattern.
  *
  * @author billy
  */
-public class CommandTest extends TestCase {
+public class CommandTest {
 
 	private Light light;
 	private Command lightsOn;
 	private Command lightsOff;
 	private Switch switcher;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
     @Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		light = new Light();
 		lightsOn = new LightsOnCommand(light);
 		lightsOff = new LightsOffCommand(light);
 		switcher = new Switch(lightsOn, lightsOff);
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Override
     @After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 	}
 
+    @Test
 	public void testIt() {
 		switcher.press();
 		assertTrue(light.isOn());
@@ -51,4 +45,5 @@ public class CommandTest extends TestCase {
 		switcher.press();
 		assertTrue(light.isOff());
 	}
+
 }

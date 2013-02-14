@@ -3,34 +3,34 @@ package toolbox.design.patterns.behavioral.memento;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
- * Unit test for the Memento behavioral design pattern. Acts also as the pattern's Caretaker role.
+ * <p>
+ * Unit test for the Memento behavioral design pattern.
+ * </p>
+ *
+ * <p>
+ * Acts also as the pattern's Caretaker role.
+ * </p>
  *
  * @author billy
  */
-public class MementoTest extends TestCase {
+public class MementoTest {
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         List<Editor.EditorState> savedStates = new ArrayList<Editor.EditorState>();
 
@@ -64,4 +64,5 @@ public class MementoTest extends TestCase {
         assertEquals("State 3", editor.getState());
 //        System.out.println("Editor state: " + editor.getState());
     }
+
 }

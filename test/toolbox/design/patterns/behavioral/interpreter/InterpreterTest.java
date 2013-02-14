@@ -2,28 +2,24 @@ package toolbox.design.patterns.behavioral.interpreter;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the Interpreter behavioral design pattern.
  *
  * @author billy
  */
-public class InterpreterTest extends TestCase {
+public class InterpreterTest {
 
     private Evaluator sentence;
-
     private HashMap<String,Expression> variables;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         // 3 - 4 + 5
         String expression = "w x - z +";
         this.sentence = new Evaluator(expression);
@@ -35,14 +31,11 @@ public class InterpreterTest extends TestCase {
         System.out.println(result);
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
     public void tearDown() throws Exception {
     }
 
+    @Test
     public void testIt() {
         assertEquals(4, sentence.interpret(variables));
     }

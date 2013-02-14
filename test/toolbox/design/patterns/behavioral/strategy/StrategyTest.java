@@ -1,45 +1,36 @@
 package toolbox.design.patterns.behavioral.strategy;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the Strategy behavioral design pattern.
  *
  * @author billy
  */
-public class StrategyTest extends TestCase {
+public class StrategyTest {
 
     private WordRallyCar impreza;
-
     private FormulaOne ferrari;
-
     private Helicopter apache;
-
     private JetFighter phantom;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         impreza = new WordRallyCar();
         ferrari = new FormulaOne();
         apache = new Helicopter();
         phantom = new JetFighter();
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         impreza.go();
         ferrari.go();

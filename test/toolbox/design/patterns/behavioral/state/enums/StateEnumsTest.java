@@ -1,36 +1,30 @@
 package toolbox.design.patterns.behavioral.state.enums;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the enum-based State behavioral design pattern.
  *
  * @author billy
  */
-public class StateEnumsTest extends TestCase {
+public class StateEnumsTest {
 
     private State state;
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         state = State.OFF;
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         State isON = State.ON;
         State isOFF = State.OFF;

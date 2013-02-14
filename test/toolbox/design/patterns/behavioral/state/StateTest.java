@@ -1,33 +1,27 @@
 package toolbox.design.patterns.behavioral.state;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Unit test for the State behavioral design pattern.
  *
  * @author billy
  */
-public class StateTest extends TestCase {
+public class StateTest {
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
-    @Override
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
+    @Test
     public void testIt() {
         Messager messager = new Messager();
         messager.sendMessage("Hello m8 :)");
