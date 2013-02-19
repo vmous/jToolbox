@@ -5,7 +5,6 @@ package toolbox.design.patterns.creational.prototype;
  * Java's build-in prototype interface <code>java.util.Cloneable</code>).
  *
  * @author billy
- *
  */
 public class Note implements Cloneable {
 
@@ -65,4 +64,5 @@ public class Note implements Cloneable {
                 + accidental.toString() + " " + value.toString()
                 + " note at the " + octave.toString() + " octave.";
     }
+
 }
