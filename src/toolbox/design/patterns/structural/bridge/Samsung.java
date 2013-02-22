@@ -4,7 +4,6 @@ package toolbox.design.patterns.structural.bridge;
  * Concrete implementor. Defines the concrete implementation of the interface.
  *
  * @author billy
- *
  */
 public class Samsung implements Television {
 

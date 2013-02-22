@@ -7,7 +7,6 @@ package toolbox.design.patterns.structural.bridge;
  * implementor.
  *
  * @author billy
- *
  */
 public abstract class Controller {
 

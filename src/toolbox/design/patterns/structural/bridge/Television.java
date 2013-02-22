@@ -6,7 +6,6 @@ package toolbox.design.patterns.structural.bridge;
  * only primitive operations.
  *
  * @author billy
- *
  */
 public interface Television {
 

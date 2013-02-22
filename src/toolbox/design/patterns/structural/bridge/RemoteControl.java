@@ -8,7 +8,6 @@ import toolbox.util.Maths;
  * primitives given by the implementor.
  *
  * @author billy
- *
  */
 public class RemoteControl extends Controller {
 
