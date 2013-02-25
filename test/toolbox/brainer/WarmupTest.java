@@ -53,4 +53,21 @@ public class WarmupTest {
         assertEquals(7, Warmup.sumDouble(3, 4));
     }
 
+
+    @Test
+    public void testDiff21() {
+        assertEquals(2, Warmup.diff21(19));
+        assertEquals(11, Warmup.diff21(10));
+        assertEquals(0, Warmup.diff21(21));
+        assertEquals(2, Warmup.diff21(22));
+        assertEquals(8, Warmup.diff21(25));
+        assertEquals(18, Warmup.diff21(30));
+        assertEquals(21, Warmup.diff21(0));
+        assertEquals(20, Warmup.diff21(1));
+        assertEquals(19, Warmup.diff21(2));
+        assertEquals(22, Warmup.diff21(-1));
+        assertEquals(23, Warmup.diff21(-2));
+        assertEquals(58, Warmup.diff21(50));
+    }
+
 }

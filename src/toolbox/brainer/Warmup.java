@@ -64,4 +64,25 @@ public class Warmup {
         return (a == b ? 2 * (a + b) : a + b);
     }
 
+
+    /**
+     * Given an int n, return the absolute difference between n and 21, except
+     * return double the absolute difference if n is over 21.
+     *
+     * @param n
+     *     The number.
+     *
+     * @return
+     *     The absolute difference between n and 21 if n is smaller than 21;
+     *     double absolute difference otherwise.
+     */
+    public static int diff21(int n) {
+        int result = Math.abs(n - 21);
+
+        if (n > 21)
+            result *= 2;
+
+        return result;
+    }
+
 }
