@@ -85,4 +85,30 @@ public class Warmup {
         return result;
     }
 
+
+    /**
+     * We have a loud talking parrot. The "hour" parameter is the current hour
+     * time in the range 0..23. We are in trouble if the parrot is talking and
+     * the hour is before 7 or after 20. Return true if we are in trouble.
+     *
+     * @param talking
+     *     Set to {@code true} to denote the parrot is talking; {@code false}
+     *     otherwise.
+     *
+     * @param hour
+     *     The current hour time (in the range of 0..23).
+     *
+     * @return
+     *     {@code true} if the parrot is talking before 7 or after 20;
+     *     {@code false} otherwise.
+     */
+    public static boolean parrotTrouble(boolean talking, int hour) {
+        boolean inTrouble = false;
+
+        if (talking && (hour < 7 || hour > 20))
+            inTrouble = true;
+
+        return inTrouble;
+    }
+
 }

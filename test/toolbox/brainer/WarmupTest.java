@@ -70,4 +70,19 @@ public class WarmupTest {
         assertEquals(58, Warmup.diff21(50));
     }
 
+
+    @Test
+    public void testParrotTrouble() {
+        assertTrue(Warmup.parrotTrouble(true, 6));
+        assertFalse(Warmup.parrotTrouble(true, 7));
+        assertFalse(Warmup.parrotTrouble(false, 6));
+        assertTrue(Warmup.parrotTrouble(true, 21));
+        assertFalse(Warmup.parrotTrouble(false, 21));
+        assertFalse(Warmup.parrotTrouble(false, 20));
+        assertTrue(Warmup.parrotTrouble(true, 23));
+        assertFalse(Warmup.parrotTrouble(false, 23));
+        assertFalse(Warmup.parrotTrouble(true, 20));
+        assertFalse(Warmup.parrotTrouble(false, 12));
+    }
+
 }
