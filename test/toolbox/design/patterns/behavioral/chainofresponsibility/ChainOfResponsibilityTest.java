@@ -35,7 +35,7 @@ public class ChainOfResponsibilityTest {
 	}
 
     @After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		System.setOut(null);
 	}
 
