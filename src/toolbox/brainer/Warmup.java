@@ -189,4 +189,94 @@ public class Warmup {
         return ( (str.startsWith("not ") || str.startsWith("not")) ? str : ("not " + str) );
     }
 
+    /**
+     * Given a non-empty string and an int n, return a new string where the
+     * char at index n has been removed. The value of n will be a valid index
+     * of a char in the original string (i.e. n will be in the range
+     * 0..str.length()-1 inclusive).
+     *
+     * @param str
+     *     The string.
+     * @param n
+     *     The index to be removed.
+     *
+     * @return
+     *     The string without the character in position n.
+     */
+    public static String missingChar(String str, int n) {
+        return str.substring(0, n) + str.substring(n + 1);
+    }
+
+
+    /**
+     * Given a string, return a new string where the first and last chars have
+     * been exchanged.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     A new String with the first and last characters swapped.
+     */
+    public static String frontBack(String str) {
+        char[] c = str.toCharArray();
+
+        if (c.length == 0)
+            return "";
+
+        char tmp = c[c.length - 1];
+        c[c.length - 1] = c[0];
+        c[0] = tmp;
+
+        return new String(c);
+    }
+
+
+    /**
+     * Given a string, we'll say that the front is the first 3 chars of the
+     * string. If the string length is less than 3, the front is whatever is
+     * there. Return a new string which is 3 copies of the front.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     A string with 3 copies of the front.
+     */
+    public static String front3(String str) {
+        String front;
+        if (str.length() < 3)
+            front = str;
+        else
+            front = str.substring(0, 3);
+
+        return front + front + front;
+    }
+
+
+    /**
+     * Given a string, take the last char and return a new string with the
+     * last char added at the front and back, so "cat" yields "tcatt". The
+     * original string will be length 1 or more.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     A string with the last character added to the front and back.
+     */
+    public static String backAround(String str) {
+        String result;
+
+        if (str.length() > 0) {
+            char c = str.toCharArray()[str.length() - 1];
+            result = c + str + c;
+        }
+        else {
+            result = "";
+        }
+
+        return result;
+    }
+
 }

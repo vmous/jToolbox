@@ -155,4 +155,55 @@ public class WarmupTest {
         assertEquals("not no", Warmup.notString("no"));
     }
 
+
+    @Test
+    public void testMissingChar() {
+        assertEquals("ktten", Warmup.missingChar("kitten", 1));
+        assertEquals("itten", Warmup.missingChar("kitten", 0));
+        assertEquals("kittn", Warmup.missingChar("kitten", 4));
+        assertEquals("i", Warmup.missingChar("Hi", 0));
+        assertEquals("H", Warmup.missingChar("Hi", 1));
+        assertEquals("ode", Warmup.missingChar("code", 0));
+        assertEquals("cde", Warmup.missingChar("code", 1));
+        assertEquals("coe", Warmup.missingChar("code", 2));
+        assertEquals("cod", Warmup.missingChar("code", 3));
+        assertEquals("chocolat", Warmup.missingChar("chocolate", 8));
+    }
+
+
+    @Test
+    public void testFrontBack() {
+        assertEquals("eodc", Warmup.frontBack("code"));
+        assertEquals("a", Warmup.frontBack("a"));
+        assertEquals("ba", Warmup.frontBack("ab"));
+        assertEquals("cba", Warmup.frontBack("abc"));
+        assertEquals("", Warmup.frontBack(""));
+        assertEquals("ehocolatC", Warmup.frontBack("Chocolate"));
+        assertEquals("aavJ", Warmup.frontBack("Java"));
+        assertEquals("hello", Warmup.frontBack("oellh"));
+    }
+
+
+    @Test
+    public void testFront3() {
+        assertEquals("JavJavJav", Warmup.front3("Java"));
+        assertEquals("ChoChoCho", Warmup.front3("Chocolate"));
+        assertEquals("abcabcabc", Warmup.front3("abc"));
+        assertEquals("abcabcabc", Warmup.front3("abcXYZ"));
+        assertEquals("ababab", Warmup.front3("ab"));
+        assertEquals("aaa", Warmup.front3("a"));
+        assertEquals("", Warmup.front3(""));
+    }
+
+
+    @Test
+    public void testBackAround() {
+        assertEquals("tcatt", Warmup.backAround("cat"));
+        assertEquals("oHelloo", Warmup.backAround("Hello"));
+        assertEquals("aaa", Warmup.backAround("a"));
+        assertEquals("cabcc", Warmup.backAround("abc"));
+        assertEquals("dreadd", Warmup.backAround("read"));
+        assertEquals("obooo", Warmup.backAround("boo"));
+    }
+
 }
