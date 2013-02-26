@@ -254,4 +254,66 @@ public class WarmupTest {
         assertFalse(Warmup.in1020(9, 9));
     }
 
+
+    @Test
+    public void testHasTeen() {
+        assertTrue(Warmup.hasTeen(13, 20, 10));
+        assertTrue(Warmup.hasTeen(20, 19, 10));
+        assertTrue(Warmup.hasTeen(20, 10, 13));
+        assertFalse(Warmup.hasTeen(1, 20, 12));
+        assertTrue(Warmup.hasTeen(19, 20, 12));
+        assertTrue(Warmup.hasTeen(12, 20, 19));
+        assertFalse(Warmup.hasTeen(12, 9, 20));
+        assertTrue(Warmup.hasTeen(12, 18, 20));
+        assertTrue(Warmup.hasTeen(14, 2, 20));
+        assertFalse(Warmup.hasTeen(4, 2, 20));
+        assertFalse(Warmup.hasTeen(11, 22, 22));
+    }
+
+
+    @Test
+    public void testLoneTeen() {
+        assertTrue(Warmup.loneTeen(13, 99));
+        assertTrue(Warmup.loneTeen(21, 19));
+        assertFalse(Warmup.loneTeen(13, 13));
+        assertTrue(Warmup.loneTeen(14, 20));
+        assertTrue(Warmup.loneTeen(20, 15));
+        assertFalse(Warmup.loneTeen(16, 17));
+        assertTrue(Warmup.loneTeen(16, 9));
+        assertFalse(Warmup.loneTeen(16, 18));
+        assertFalse(Warmup.loneTeen(13, 19));
+        assertTrue(Warmup.loneTeen(13, 20));
+        assertTrue(Warmup.loneTeen(6, 18));
+        assertTrue(Warmup.loneTeen(99, 13));
+        assertFalse(Warmup.loneTeen(99, 99));
+    }
+
+
+    @Test
+    public void testDelDel() {
+        assertEquals("abc", Warmup.delDel("adelbc"));
+        assertEquals("aHello", Warmup.delDel("adelHello"));
+        assertEquals("adedbc", Warmup.delDel("adedbc"));
+        assertEquals("abcdel", Warmup.delDel("abcdel"));
+        assertEquals("add", Warmup.delDel("add"));
+        assertEquals("ad", Warmup.delDel("ad"));
+        assertEquals("a", Warmup.delDel("a"));
+        assertEquals("", Warmup.delDel(""));
+        assertEquals("del", Warmup.delDel("del"));
+        assertEquals("a", Warmup.delDel("a"));
+        assertEquals("aadelbb", Warmup.delDel("aadelbb"));
+    }
+
+
+    @Test
+    public void testMixStart() {
+        assertTrue(Warmup.mixStart("mix snacks"));
+        assertTrue(Warmup.mixStart("pix snacks"));
+        assertFalse(Warmup.mixStart("piz snacks"));
+        assertTrue(Warmup.mixStart("nix"));
+        assertFalse(Warmup.mixStart("ni"));
+        assertFalse(Warmup.mixStart("n"));
+        assertFalse(Warmup.mixStart(""));
+    }
+
 }

@@ -371,4 +371,86 @@ public class Warmup {
         return ( (a >= 10 && a <= 20) || (b >= 10 && b <= 20) );
     }
 
+
+    /**
+     * We'll say that a number is "teen" if it is in the range 13..19
+     * inclusive. Given 3 int values, return true if 1 or more of them are
+     * teen.
+     *
+     * @param a
+     *     The first age.
+     * @param b
+     *     The second age.
+     * @param c
+     *     The third age.
+     *
+     * @return
+     *     {@code true} if one or more ages are between 13 and 19 inclusive;
+     *     {@code false} otherwise.
+     */
+    public static boolean hasTeen(int a, int b, int c) {
+        return ( (a >= 13 && a <= 19) || (b >= 13 && b <= 19) || (c >= 13 && c <= 19) );
+    }
+
+
+    /**
+     * We'll say that a number is "teen" if it is in the range 13..19
+     * inclusive. Given 2 int values, return true if one or the other is teen,
+     * but not both.
+     *
+     * @param a
+     *     The first age.
+     * @param b
+     *     The second age.
+     *
+     * @return
+     *     {@code true} if one of the two ages are teen, but not both;
+     */
+    public static boolean loneTeen(int a, int b) {
+        return ( ( (a >= 13 && a <= 19) && !(b >= 13 && b <= 19) ) || ( !(a >= 13 && a <= 19) && (b >= 13 && b <= 19) ) );
+    }
+
+
+    /**
+     * Given a string, if the string "del" appears starting at index 1, return
+     * a string where that "del" has been deleted. Otherwise, return the string
+     * unchanged.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     The string with any "del" sequence starting at index 1 deleted.
+     */
+    public static String delDel(String str) {
+        if ( (str.length() < 4) || !(str.substring(1, 4).equals("del")) ) {
+            return str;
+        }
+        else {
+            return str.substring(0, 1) + str.substring(4, str.length());
+        }
+    }
+
+
+    /**
+     * Return true if the given string begins with "mix", except the 'm' can be
+     * anything, so "pix", "9ix" .. all count.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     {@code true} if the string starts with *ix.
+     */
+    public static boolean mixStart(String str) {
+        if (str.length() < 3) {
+            return false;
+        }
+
+        if (str.charAt(1) == 'i' && str.charAt(2) == 'x')
+            return true;
+        else
+            return false;
+    }
+
 }
