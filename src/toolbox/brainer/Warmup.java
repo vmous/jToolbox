@@ -134,4 +134,20 @@ public class Warmup {
         return is;
     }
 
+
+    /**
+     * Given an int n, return true if it is within 10 of 100 or 200.
+     * Note: Math.abs(num) computes the absolute value of a number.
+     *
+     * @param n
+     *     The number.
+     *
+     * @return
+     *     {@code true} if the difference of the number to 100 or 200 is
+     *     smaller or equal to 10; {@code false} otherwise.
+     */
+    public static boolean nearHundred(int n) {
+        return ( (Math.abs(100 - n) <= 10) || (Math.abs(200 - n) <= 10) );
+    }
+
 }

@@ -99,4 +99,24 @@ public class WarmupTest {
         assertTrue(Warmup.makes10(12, -2));
     }
 
+
+    @Test
+    public void testNearHundred() {
+        assertTrue(Warmup.nearHundred(93));
+        assertTrue(Warmup.nearHundred(90));
+        assertFalse(Warmup.nearHundred(89));
+        assertTrue(Warmup.nearHundred(110));
+        assertFalse(Warmup.nearHundred(111));
+        assertFalse(Warmup.nearHundred(121));
+        assertFalse(Warmup.nearHundred(0));
+        assertFalse(Warmup.nearHundred(5));
+        assertTrue(Warmup.nearHundred(191));
+        assertFalse(Warmup.nearHundred(189));
+        assertTrue(Warmup.nearHundred(190));
+        assertTrue(Warmup.nearHundred(200));
+        assertTrue(Warmup.nearHundred(210));
+        assertFalse(Warmup.nearHundred(211));
+        assertFalse(Warmup.nearHundred(1000));
+    }
+
 }
