@@ -172,4 +172,21 @@ public class Warmup {
         return ( negative ? (a < 0 && b < 0) : ( (a < 0 && b > 0) || (a > 0 && b < 0)) );
     }
 
+
+    /**
+     * Given a string, return a new string where "not " has been added to the
+     * front. However, if the string already begins with "not", return the
+     * string unchanged. Note: use .equals() to compare 2 strings.
+     *
+     * @param str
+     *     The string to manipulate
+     *
+     * @return
+     *     Return new string with "not" in the front unless there is already a
+     *     "not" in the from, so it returns the string as is.
+     */
+    public static String notString(String str) {
+        return ( (str.startsWith("not ") || str.startsWith("not")) ? str : ("not " + str) );
+    }
+
 }
