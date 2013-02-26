@@ -111,4 +111,27 @@ public class Warmup {
         return inTrouble;
     }
 
+
+    /**
+     * Given 2 ints, a and b, return true if one of them is 10 or if their sum
+     * is 10.
+     *
+     * @param a
+     *     The first number.
+     * @param b
+     *     The second number.
+     *
+     * @return
+     *     {@code true} if one of them is 10 or their sum is 10; {@code false}
+     *     otherwise.
+     */
+    public static boolean makes10(int a, int b) {
+        boolean is = false;
+
+        if (a == 10 || b == 10 || (a + b) == 10)
+            is = true;
+
+        return is;
+    }
+
 }

@@ -85,4 +85,18 @@ public class WarmupTest {
         assertFalse(Warmup.parrotTrouble(false, 12));
     }
 
+
+    @Test
+    public void testMakes10() {
+        assertTrue(Warmup.makes10(9, 10));
+        assertFalse(Warmup.makes10(9, 9));
+        assertTrue(Warmup.makes10(1, 9));
+        assertTrue(Warmup.makes10(10, 1));
+        assertTrue(Warmup.makes10(10, 10));
+        assertTrue(Warmup.makes10(8, 2));
+        assertFalse(Warmup.makes10(8, 3));
+        assertTrue(Warmup.makes10(10, 42));
+        assertTrue(Warmup.makes10(12, -2));
+    }
+
 }
