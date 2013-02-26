@@ -206,4 +206,52 @@ public class WarmupTest {
         assertEquals("obooo", Warmup.backAround("boo"));
     }
 
+
+    @Test
+    public void testFront22() {
+        assertEquals("kikittenki", Warmup.front22("kitten"));
+        assertEquals("HaHaHa", Warmup.front22("Ha"));
+        assertEquals("ababcab", Warmup.front22("abc"));
+        assertEquals("ababab", Warmup.front22("ab"));
+        assertEquals("aaa", Warmup.front22("a"));
+        assertEquals("", Warmup.front22(""));
+        assertEquals("LoLogicLo", Warmup.front22("Logic"));
+    }
+
+
+    @Test
+    public void testStartHi() {
+        assertTrue(Warmup.startHi("hi there"));
+        assertTrue(Warmup.startHi("hi"));
+        assertFalse(Warmup.startHi("hello hi"));
+        assertFalse(Warmup.startHi("he"));
+        assertFalse(Warmup.startHi("h"));
+        assertFalse(Warmup.startHi(""));
+        assertFalse(Warmup.startHi("ho hi"));
+        assertTrue(Warmup.startHi("hi ho"));
+    }
+
+
+    @Test
+    public void testIcyHot() {
+        assertTrue(Warmup.icyHot(120, -1));
+        assertTrue(Warmup.icyHot(-1, 120));
+        assertFalse(Warmup.icyHot(2, 120));
+        assertFalse(Warmup.icyHot(-1, 100));
+        assertFalse(Warmup.icyHot(-2, -2));
+        assertFalse(Warmup.icyHot(120, 120));
+    }
+
+
+    @Test
+    public void testIn1020() {
+        assertTrue(Warmup.in1020(12, 99));
+        assertTrue(Warmup.in1020(21, 12));
+        assertFalse(Warmup.in1020(8, 99));
+        assertTrue(Warmup.in1020(99, 10));
+        assertTrue(Warmup.in1020(20, 20));
+        assertFalse(Warmup.in1020(21, 21));
+        assertFalse(Warmup.in1020(9, 9));
+    }
+
 }

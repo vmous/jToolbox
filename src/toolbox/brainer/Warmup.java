@@ -279,4 +279,96 @@ public class Warmup {
         return result;
     }
 
+
+    /**
+     * Given a string, take the first 2 chars and return the string with the 2
+     * chars added at both the front and back, so "kitten" yields "kikittenki".
+     * If the string length is less than 2, use whatever chars are there.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     The given string with the 2 first two chars added to the start and
+     *     the end.
+     */
+    public static String front22(String str) {
+        String result;
+        String extra;
+        char[] c;
+
+        if (str.length() >= 2) {
+            c = str.toCharArray();
+            extra = c[0] + "" + c[1] + "";
+        }
+        else if (str.length() == 1) {
+            c = str.toCharArray();
+            extra = c[0] + "";
+        }
+        else {
+            extra = "";
+        }
+
+        result = extra + str + extra;
+
+        return result;
+    }
+
+
+    /**
+     * Given a string, return true if the string starts with "hi" and
+     * false otherwise.
+     *
+     * @param str
+     *     The string.
+     *
+     * @return
+     *     {@code true} if the string starts with "hi"; {@code false}
+     *     otherwise.
+     */
+    public static boolean startHi(String str) {
+        if (str.length() < 2) return false;
+
+        String firstTwo = str.substring(0, 2);
+
+        return(firstTwo.equals("hi"));
+
+        // Or just use the library function.
+//        return str.startsWith("hi");
+    }
+
+
+    /**
+     * Given two temperatures, return true if one is less than 0 and the other
+     * is greater than 100.
+     *
+     * @param temp1
+     *     The first temperature.
+     * @param temp2
+     *     The second temperature.
+     *
+     * @return
+     *     {@code true} if one is less than 0 and the other is greater than
+     *     100; {@code false} otherwise.
+     */
+    public static boolean icyHot(int temp1, int temp2) {
+        return ( (temp1 < 0 && temp2 > 100) ||  (temp1 > 100 && temp2 < 0) );
+    }
+
+
+    /**
+     * Given 2 int values, return true if either of them is in the range 10..20 inclusive.
+     *
+     * @param a
+     *     The first value.
+     * @param b
+     *     The second value.
+     *
+     * @return
+     *     {@code true} if either of then is between 10 to 20 inclusive.
+     */
+    public static boolean in1020(int a, int b) {
+        return ( (a >= 10 && a <= 20) || (b >= 10 && b <= 20) );
+    }
+
 }
