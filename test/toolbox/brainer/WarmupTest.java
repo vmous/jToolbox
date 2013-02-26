@@ -119,4 +119,28 @@ public class WarmupTest {
         assertFalse(Warmup.nearHundred(1000));
     }
 
+
+    @Test
+    public void testPosNeg() {
+        assertTrue(Warmup.posNeg(1, -1, false));
+        assertTrue(Warmup.posNeg(-1, 1, false));
+        assertTrue(Warmup.posNeg(-4, -5, true));
+        assertFalse(Warmup.posNeg(-4, -5, false));
+        assertTrue(Warmup.posNeg(-4, 5, false));
+        assertFalse(Warmup.posNeg(-4, 5, true));
+        assertFalse(Warmup.posNeg(1, 1, false));
+        assertFalse(Warmup.posNeg(-1, -1, false));
+        assertFalse(Warmup.posNeg(1, -1, true));
+        assertFalse(Warmup.posNeg(-1, 1, true));
+        assertFalse(Warmup.posNeg(1, 1, true));
+        assertTrue(Warmup.posNeg(-1, -1, true));
+        assertTrue(Warmup.posNeg(5, -5, false));
+        assertTrue(Warmup.posNeg(-6, 6, false));
+        assertFalse(Warmup.posNeg(-5, -6, false));
+        assertFalse(Warmup.posNeg(-2, -1, false));
+        assertFalse(Warmup.posNeg(1, 2, false));
+        assertFalse(Warmup.posNeg(-5, 6, true));
+        assertTrue(Warmup.posNeg(-5, -5, true));
+    }
+
 }

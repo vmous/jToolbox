@@ -150,4 +150,26 @@ public class Warmup {
         return ( (Math.abs(100 - n) <= 10) || (Math.abs(200 - n) <= 10) );
     }
 
+
+    /**
+     * Given 2 int values, return true if one is negative and one is positive.
+     * Except if the parameter "negative" is true, then return true only if
+     * both are negative.
+     *
+     * @param a
+     *     The first number.
+     * @param b
+     *     The second number.
+     * @param negative
+     *     Set it to {@code true} to denote negative; {@code false} otherwise.
+     *
+     * @return
+     *     {@code true} if one of the two given numbers are negative except if
+     *     the negative parameter is {@code true} then both numbers should be
+     *     negative.
+     */
+    public static boolean posNeg(int a, int b, boolean negative) {
+        return ( negative ? (a < 0 && b < 0) : ( (a < 0 && b > 0) || (a > 0 && b < 0)) );
+    }
+
 }
