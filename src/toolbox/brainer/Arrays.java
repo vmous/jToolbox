@@ -110,12 +110,12 @@ public class Arrays {
      *     A two-element array containing the given arrays' middle elements.
      */
     public static int[] middleWay(int[] a, int[] b) {
-        int[] newArray = new int[2];
+        int[] arr = new int[2];
 
-        newArray[0] = a[1];
-        newArray[1] = b[1];
+        arr[0] = a[1];
+        arr[1] = b[1];
 
-        return newArray;
+        return arr;
     }
 
 
@@ -167,12 +167,12 @@ public class Arrays {
      *     array.
      */
     public static int[] makeMiddle(int[] nums) {
-        int[] newArray = new int[2];
+        int[] arr = new int[2];
 
-        newArray[0] = nums[(int) Math.floor((double) (nums.length - 1) / 2)];
-        newArray[1] = nums[(int) Math.ceil((double) (nums.length - 1) / 2)];
+        arr[0] = nums[(int) Math.floor((double) (nums.length - 1) / 2)];
+        arr[1] = nums[(int) Math.ceil((double) (nums.length - 1) / 2)];
 
-        return newArray;
+        return arr;
     }
 
 
@@ -189,14 +189,14 @@ public class Arrays {
      *     array.
      */
     public static int[] midThree(int[] nums) {
-        int[] newArray = new int[3];
+        int[] arr = new int[3];
         int mid = (nums.length - 1) / 2;
 
-        newArray[0] = nums[mid - 1];
-        newArray[1] = nums[mid];
-        newArray[2] = nums[mid + 1];
+        arr[0] = nums[mid - 1];
+        arr[1] = nums[mid];
+        arr[2] = nums[mid + 1];
 
-        return newArray;
+        return arr;
     }
 
 
@@ -294,14 +294,14 @@ public class Arrays {
      *     the given array.
      */
     public static int[] makeEnds(int[] nums) {
-        int[] newArray = new int[2];
+        int[] arr = new int[2];
 
         if (nums.length > 0) {
-            newArray[0] = nums[0];
-            newArray[1] = nums[nums.length - 1];
+            arr[0] = nums[0];
+            arr[1] = nums[nums.length - 1];
         }
 
-        return newArray;
+        return arr;
     }
 
 
@@ -319,13 +319,13 @@ public class Arrays {
      *     elements are is the same while first are all zero
      */
     public static int[] makeLast(int[] nums) {
-        int[] newArray = new int[2 * nums.length];
+        int[] arr = new int[2 * nums.length];
 
         if (nums.length > 0) {
-            newArray[2 * nums.length - 1] = nums[nums.length - 1];
+            arr[2 * nums.length - 1] = nums[nums.length - 1];
         }
 
-        return newArray;
+        return arr;
     }
 
 
@@ -367,16 +367,16 @@ public class Arrays {
      *     A new array of length 4 containing all the given arrays' elements.
      */
     public static int[] plusTwo(int[] a, int[] b) {
-        int[] newArray = new int[4];
+        int[] arr = new int[4];
 
         if (a.length == 2 && b.length == 2) {
             for (int i = 0; i < 2; i++) {
-                newArray[i] = a[i];
-                newArray[i + 2] = b[i];
+                arr[i] = a[i];
+                arr[i + 2] = b[i];
             }
         }
 
-        return newArray;
+        return arr;
     }
 
 
@@ -426,14 +426,14 @@ public class Arrays {
      *     elements of a followed by elements of b.
      */
     public static int[] make2(int[] a, int[] b) {
-        int[] newArray = new int[2];
+        int[] arr = new int[2];
 
         int j = 0;
         boolean aTurn = (j == a.length ? false : true);
-        for (int i = 0; i < newArray.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (aTurn) {
                 if (j < a.length) {
-                    newArray[i] = a[j];
+                    arr[i] = a[j];
                     j++;
                     if(j == a.length) {
                         aTurn = false;
@@ -443,13 +443,228 @@ public class Arrays {
             }
             else {
                 if (j < b.length) {
-                    newArray[i] = b[j];
+                    arr[i] = b[j];
                     j++;
                 }
             }
         }
 
-        return newArray;
+        return arr;
+    }
+
+
+    /**
+     * Return an int array length 3 containing the first 3 digits of
+     * pi, {3, 1, 4}.
+     *
+     * @return
+     *     A new array of length 3 containing the first 3 digits of pi.
+     */
+    public static int[] makePi() {
+        return new int[]{3, 1, 4};
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Given an array of ints length 3, return an array with the elements
+     * "rotated left" so {1, 2, 3} yields {2, 3, 1}.
+     *
+     * @param nums
+     *     The array of length 3.
+     *
+     * @return
+     *     An array with the elements rotated left.
+     */
+    public static int[] rotateLeft3(int[] nums) {
+        int[] arr = new int[3];
+
+        for (int i = 0; i < nums.length; i++) {
+            arr[i] = nums[(i + 1) % 3];
+        }
+
+        return arr;
+    }
+
+
+    /**
+     * Given an array of ints, return the sum of the first 2 elements in the
+     * array. If the array length is less than 2, just sum up the elements that
+     * exist, returning 0 if the array is length 0.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The sum of the first two elements in the array.
+     */
+    public static int sum2(int[] nums) {
+        int sum = 0;
+
+        if (nums.length > 1)
+            sum = nums[0] + nums[1];
+        else if (nums.length == 1)
+            sum = nums[0];
+
+        return sum;
+    }
+
+
+    /**
+     * Given an int array length 2, return true if it contains a 2 or a 3.
+     *
+     * @param nums
+     *     The array of length 2.
+     *
+     * @return
+     *     {@code true} if the array contains a 2 or a 3. {@code false}
+     *     otherwise.
+     */
+    public static boolean has23(int[] nums) {
+        boolean is = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2 || nums[i] == 3) {
+                is = true;
+                break;
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * Given an int array, return true if the array contains 2 twice, or 3
+     * twice. The array will be length 0, 1, or 2.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if the array contains 2 or 3 twice; {@code false}
+     *     otherwise.
+     */
+    public static boolean double23(int[] nums) {
+        boolean is = false;
+        boolean found2 = false;
+        boolean found3 = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) {
+                if (found2) {
+                    is = true;
+                    break;
+                }
+                else {
+                    found2 = true;
+                }
+            }
+            else if (nums[i] == 3) {
+                if (found3) {
+                    is = true;
+                    break;
+                }
+                else {
+                    found3 = true;
+                }
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * Given an array of ints, swap the first and last elements in the array.
+     * Return the modified array. The array length will be at least 1.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The given array with the first and last elements swapped.
+     */
+    public static int[] swapEnds(int[] nums) {
+        if (nums.length > 0) {
+            int tmp = nums[nums.length - 1];
+            nums[nums.length - 1] = nums[0];
+            nums[0] = tmp;
+        }
+
+        return nums;
+    }
+
+
+    /**
+     * Given an int array of any length, return a new array of its first 2
+     * elements. If the array is smaller than length 2, use whatever elements
+     * are present.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     A new array with the given array's first 2 elements. If the given
+     *     array is smaller that length 2 return the elements available.
+     */
+    public static int[] frontPiece(int[] nums) {
+        int[] arr;
+
+        if (nums.length > 1) {
+            arr = new int[2];
+            arr[0] = nums[0];
+            arr[1] = nums[1];
+        }
+        else if (nums.length == 1) {
+            arr = new int[1];
+            arr[0] = nums[0];
+        }
+        else {
+            arr = new int[0];
+        }
+
+        return arr;
+    }
+
+
+    /**
+     * Given 2 int arrays, a and b, of any length, return a new array with the
+     * first element of each array. If either array is length 0, ignore that
+     * array.
+     *
+     * @param a
+     *     The first array.
+     * @param b
+     *     The second array.
+     *
+     * @return
+     *     A new array with the first elements of each of the given array.
+     */
+    public static int[] front11(int[] a, int[] b) {
+        int[] arr;
+
+        if(a.length > 0) {
+            if (b.length > 0) {
+                arr = new int[2];
+                arr[0] = a[0];
+                arr[1] = b[0];
+            }
+            else {
+                arr = new int[1];
+                arr[0] = a[0];
+            }
+        }
+        else if (b.length > 0) {
+            arr = new int[1];
+            arr[0] = b[0];
+        }
+        else {
+            arr = new int[0];
+        }
+
+        return arr;
     }
 
 }

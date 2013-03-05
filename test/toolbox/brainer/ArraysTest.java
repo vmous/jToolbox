@@ -274,4 +274,95 @@ public class ArraysTest {
         assertArrayEquals(new int[]{5, 4}, Arrays.make2(new int[]{5, 4}, new int[]{2, 3, 7}));
     }
 
+
+    @Test
+    public void testMakePi() {
+        assertArrayEquals(new int[]{3, 1, 4}, Arrays.makePi());
+    }
+
+
+    @Test
+    public void testRotateLeft3() {
+        assertArrayEquals(new int[]{2, 3, 1}, Arrays.rotateLeft3(new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{11, 9, 5}, Arrays.rotateLeft3(new int[]{5, 11, 9}));
+        assertArrayEquals(new int[]{0, 0, 7}, Arrays.rotateLeft3(new int[]{7, 0, 0}));
+        assertArrayEquals(new int[]{2, 1, 1}, Arrays.rotateLeft3(new int[]{1, 2, 1}));
+        assertArrayEquals(new int[]{0, 1, 0}, Arrays.rotateLeft3(new int[]{0, 0, 1}));
+    }
+
+
+    @Test
+    public void testSum2() {
+        assertEquals(3, Arrays.sum2(new int[]{1, 2, 3}));
+        assertEquals(2, Arrays.sum2(new int[]{1, 1}));
+        assertEquals(2, Arrays.sum2(new int[]{1, 1, 1, 1}));
+        assertEquals(3, Arrays.sum2(new int[]{1, 2}));
+        assertEquals(1, Arrays.sum2(new int[]{1}));
+        assertEquals(0, Arrays.sum2(new int[]{}));
+        assertEquals(9, Arrays.sum2(new int[]{4, 5, 6}));
+        assertEquals(4, Arrays.sum2(new int[]{4}));
+    }
+
+
+    @Test
+    public void testHas23() {
+        assertTrue(Arrays.has23(new int[]{2, 5}));
+        assertTrue(Arrays.has23(new int[]{4, 3}));
+        assertFalse(Arrays.has23(new int[]{4, 5}));
+        assertTrue(Arrays.has23(new int[]{2, 2}));
+        assertTrue(Arrays.has23(new int[]{3, 2}));
+        assertTrue(Arrays.has23(new int[]{3, 3}));
+        assertFalse(Arrays.has23(new int[]{7, 7}));
+        assertTrue(Arrays.has23(new int[]{3, 9}));
+        assertFalse(Arrays.has23(new int[]{9, 5}));
+    }
+
+
+    @Test
+    public void testDouble23() {
+        assertTrue(Arrays.double23(new int[]{2, 2}));
+        assertTrue(Arrays.double23(new int[]{3, 3}));
+        assertFalse(Arrays.double23(new int[]{2, 3}));
+        assertFalse(Arrays.double23(new int[]{3, 2}));
+        assertFalse(Arrays.double23(new int[]{4, 5}));
+        assertFalse(Arrays.double23(new int[]{2}));
+        assertFalse(Arrays.double23(new int[]{3}));
+        assertFalse(Arrays.double23(new int[]{}));
+        assertFalse(Arrays.double23(new int[]{3, 4}));
+    }
+
+    public void testSwapEnds() {
+        assertArrayEquals(new int[]{4, 2, 3, 1}, new int[]{1, 2, 3, 4});
+        assertArrayEquals(new int[]{3, 2, 1}, new int[]{1, 2, 3});
+        assertArrayEquals(new int[]{5, 6, 7, 9, 8}, new int[]{8, 6, 7, 9, 5});
+        assertArrayEquals(new int[]{9, 1, 4, 1, 5, 3}, new int[]{3, 1, 4, 1, 5, 9});
+        assertArrayEquals(new int[]{2, 1}, new int[]{1, 2});
+        assertArrayEquals(new int[]{1}, new int[]{1});
+    }
+
+
+    @Test
+    public void testFrontPiece() {
+        assertArrayEquals(new int[]{1, 2}, Arrays.frontPiece(new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{1, 2}, Arrays.frontPiece(new int[]{1, 2}));
+        assertArrayEquals(new int[]{1}, Arrays.frontPiece(new int[]{1}));
+        assertArrayEquals(new int[]{}, Arrays.frontPiece(new int[]{}));
+        assertArrayEquals(new int[]{6, 5}, Arrays.frontPiece(new int[]{6, 5, 0}));
+        assertArrayEquals(new int[]{6, 5}, Arrays.frontPiece(new int[]{6, 5}));
+        assertArrayEquals(new int[]{3, 1}, Arrays.frontPiece(new int[]{3, 1, 4, 1, 5}));
+        assertArrayEquals(new int[]{6}, Arrays.frontPiece(new int[]{6}));
+    }
+
+
+    @Test
+    public void testfront11() {
+        assertArrayEquals(new int[]{1, 7}, Arrays.front11(new int[]{1, 2, 3}, new int[]{7, 9, 8}));
+        assertArrayEquals(new int[]{1, 2}, Arrays.front11(new int[]{1}, new int[]{2}));
+        assertArrayEquals(new int[]{1}, Arrays.front11(new int[]{1, 7}, new int[]{}));
+        assertArrayEquals(new int[]{2}, Arrays.front11(new int[]{}, new int[]{2, 8}));
+        assertArrayEquals(new int[]{}, Arrays.front11(new int[]{}, new int[]{}));
+        assertArrayEquals(new int[]{3, 1}, Arrays.front11(new int[]{3}, new int[]{1, 4, 1, 9}));
+        assertArrayEquals(new int[]{1}, Arrays.front11(new int[]{1, 4, 1, 9}, new int[]{}));
+    }
+
 }
