@@ -169,4 +169,109 @@ public class ArraysTest {
         assertTrue(Arrays.sameFirstLast(new int[]{7, 7}));
     }
 
+    @Test
+    public void testSum3() {
+        assertEquals(6, Arrays.sum3(new int[]{1, 2, 3}));
+        assertEquals(18, Arrays.sum3(new int[]{5, 11, 2}));
+        assertEquals(7, Arrays.sum3(new int[]{7, 0, 0}));
+        assertEquals(4, Arrays.sum3(new int[]{1, 2, 1}));
+        assertEquals(3, Arrays.sum3(new int[]{1, 1, 1}));
+        assertEquals(11, Arrays.sum3(new int[]{2, 7, 2}));
+    }
+
+
+    @Test
+    public void testMaxEnd3() {
+        assertArrayEquals(new int[]{3, 3, 3}, Arrays.maxEnd3(new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{11, 11, 11}, Arrays.maxEnd3(new int[]{11, 5, 9}));
+        assertArrayEquals(new int[]{3, 3, 3}, Arrays.maxEnd3(new int[]{2, 11, 3}));
+        assertArrayEquals(new int[]{11, 11, 11}, Arrays.maxEnd3(new int[]{11, 3, 3}));
+        assertArrayEquals(new int[]{11, 11, 11}, Arrays.maxEnd3(new int[]{3, 11, 11}));
+        assertArrayEquals(new int[]{2, 2, 2}, Arrays.maxEnd3(new int[]{2, 2, 2}));
+        assertArrayEquals(new int[]{2, 2, 2}, Arrays.maxEnd3(new int[]{2, 11, 2}));
+        assertArrayEquals(new int[]{1, 1, 1}, Arrays.maxEnd3(new int[]{0, 0, 1}));
+    }
+
+
+    @Test
+    public void testMakeEnds() {
+        assertArrayEquals(new int[]{1, 3}, Arrays.makeEnds(new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{1, 4}, Arrays.makeEnds(new int[]{1, 2, 3, 4}));
+        assertArrayEquals(new int[]{7, 2}, Arrays.makeEnds(new int[]{7, 4, 6, 2}));
+        assertArrayEquals(new int[]{1, 3}, Arrays.makeEnds(new int[]{1, 2, 2, 2, 2, 2, 2, 3}));
+        assertArrayEquals(new int[]{7, 4}, Arrays.makeEnds(new int[]{7, 4}));
+        assertArrayEquals(new int[]{7, 7}, Arrays.makeEnds(new int[]{7}));
+        assertArrayEquals(new int[]{5, 9}, Arrays.makeEnds(new int[]{5, 2, 9}));
+        assertArrayEquals(new int[]{2, 1}, Arrays.makeEnds(new int[]{2, 3, 4, 1}));
+    }
+
+
+    @Test
+    public void testMakeLast() {
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 6}, Arrays.makeLast(new int[]{4, 5, 6}));
+        assertArrayEquals(new int[]{0, 0, 0, 2}, Arrays.makeLast(new int[]{1, 2}));
+        assertArrayEquals(new int[]{0, 3}, Arrays.makeLast(new int[]{3}));
+        assertArrayEquals(new int[]{0, 0}, Arrays.makeLast(new int[]{0}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 7}, Arrays.makeLast(new int[]{7, 7, 7}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 4}, Arrays.makeLast(new int[]{3, 1, 4}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0, 4}, Arrays.makeLast(new int[]{1, 2, 3, 4}));
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0, 0}, Arrays.makeLast(new int[]{1, 2, 3, 0}));
+        assertArrayEquals(new int[]{0, 0, 0, 4}, Arrays.makeLast(new int[]{2, 4}));
+    }
+
+
+    @Test
+    public void testStart1() {
+        assertEquals(2, Arrays.start1(new int[]{1, 2, 3}, new int[]{1, 3}));
+        assertEquals(1, Arrays.start1(new int[]{7, 2, 3}, new int[]{1}));
+        assertEquals(1, Arrays.start1(new int[]{1, 2}, new int[]{}));
+        assertEquals(1, Arrays.start1(new int[]{}, new int[]{1, 2}));
+        assertEquals(0, Arrays.start1(new int[]{7}, new int[]{}));
+        assertEquals(1, Arrays.start1(new int[]{7}, new int[]{1}));
+        assertEquals(2, Arrays.start1(new int[]{1}, new int[]{1}));
+        assertEquals(0, Arrays.start1(new int[]{7}, new int[]{8}));
+        assertEquals(0, Arrays.start1(new int[]{}, new int[]{}));
+        assertEquals(2, Arrays.start1(new int[]{1, 3}, new int[]{1}));
+    }
+
+
+    @Test
+    public void testPlusTwo() {
+        assertArrayEquals(new int[]{1, 2, 3, 4}, Arrays.plusTwo(new int[]{1, 2}, new int[]{3, 4}));
+        assertArrayEquals(new int[]{4, 4, 2, 2}, Arrays.plusTwo(new int[]{4, 4}, new int[]{2, 2}));
+        assertArrayEquals(new int[]{9, 2, 3, 4}, Arrays.plusTwo(new int[]{9, 2}, new int[]{3, 4}));
+    }
+
+
+    @Test
+    public void testMaxTriple() {
+        assertEquals(3, Arrays.maxTriple(new int[]{1, 2, 3}));
+        assertEquals(5, Arrays.maxTriple(new int[]{1, 5, 3}));
+        assertEquals(5, Arrays.maxTriple(new int[]{5, 2, 3}));
+        assertEquals(3, Arrays.maxTriple(new int[]{1, 2, 3, 1, 1}));
+        assertEquals(5, Arrays.maxTriple(new int[]{1, 7, 3, 1, 5}));
+        assertEquals(5, Arrays.maxTriple(new int[]{5, 1, 3, 7, 1}));
+        assertEquals(5, Arrays.maxTriple(new int[]{5, 1, 7, 3, 7, 8, 1}));
+        assertEquals(9, Arrays.maxTriple(new int[]{5, 1, 7, 9, 7, 8, 1}));
+        assertEquals(9, Arrays.maxTriple(new int[]{5, 1, 7, 3, 7, 8, 9}));
+        assertEquals(5, Arrays.maxTriple(new int[]{2, 2, 5, 1, 1}));
+    }
+
+
+    @Test
+    public void testMake2() {
+        assertArrayEquals(new int[]{4, 5}, Arrays.make2(new int[]{4, 5}, new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{4, 1}, Arrays.make2(new int[]{4}, new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{1, 2}, Arrays.make2(new int[]{}, new int[]{1, 2}));
+        assertArrayEquals(new int[]{1, 2}, Arrays.make2(new int[]{1, 2}, new int[]{}));
+        assertArrayEquals(new int[]{3, 1}, Arrays.make2(new int[]{3}, new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{3, 1}, Arrays.make2(new int[]{3}, new int[]{1}));
+        assertArrayEquals(new int[]{3, 1}, Arrays.make2(new int[]{3, 1, 4}, new int[]{}));
+        assertArrayEquals(new int[]{1, 1}, Arrays.make2(new int[]{1}, new int[]{1}));
+        assertArrayEquals(new int[]{1, 2}, Arrays.make2(new int[]{1, 2, 3}, new int[]{7, 8}));
+        assertArrayEquals(new int[]{7, 8}, Arrays.make2(new int[]{7, 8}, new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{7, 1}, Arrays.make2(new int[]{7}, new int[]{1, 2, 3}));
+        assertArrayEquals(new int[]{5, 4}, Arrays.make2(new int[]{5, 4}, new int[]{2, 3, 7}));
+    }
+
 }

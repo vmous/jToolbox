@@ -239,4 +239,217 @@ public class Arrays {
         return ( nums.length > 0 && (nums[0] == nums[nums.length - 1]) );
     }
 
+
+    /**
+     * Given an array of ints length 3, return the sum of all the elements.
+     *
+     * @param nums
+     *     The array of length 3.
+     *
+     * @return
+     *     The sum of the given array's elements.
+     */
+    public static int sum3(int[] nums) {
+        return nums[0] + nums[1] + nums[2];
+    }
+
+
+    /**
+     * Given an array of ints length 3, figure out which is larger between the
+     * first and last elements in the array, and set all the other elements to
+     * be that value. Return the changed array.
+     *
+     * @param nums
+     *     The array of length 3.
+     *
+     * @return
+     *     The array with all its elements set to the largest value of the
+     *     given element.
+     */
+    public static int[] maxEnd3(int[] nums) {
+        int max;
+
+        if (nums[0] < nums[nums.length - 1])
+            max = nums[nums.length - 1];
+        else
+            max = nums[0];
+
+        for (int i = 0; i < nums.length; i++)
+            nums[i] = max;
+
+        return nums;
+    }
+
+
+    /**
+     * Given an array of ints, return a new array length 2 containing the first
+     * and last elements from the original array. The original array will be
+     * length 1 or more.
+     *
+     * @param nums
+     *     The array of length 1.
+     *
+     * @return
+     *     A new arrat of length 2 containing the first and last elements of
+     *     the given array.
+     */
+    public static int[] makeEnds(int[] nums) {
+        int[] newArray = new int[2];
+
+        if (nums.length > 0) {
+            newArray[0] = nums[0];
+            newArray[1] = nums[nums.length - 1];
+        }
+
+        return newArray;
+    }
+
+
+    /**
+     * Given an int array, return a new array with double the length where its
+     * last element is the same as the original array, and all the other
+     * elements are 0. The original array will be length 1 or more. Note: by
+     * default, a new int array contains all 0's.
+     *
+     * @param nums
+     *     The array of length 1 or more.
+     *
+     * @return
+     *     A new array with double the size of the given array, where its last
+     *     elements are is the same while first are all zero
+     */
+    public static int[] makeLast(int[] nums) {
+        int[] newArray = new int[2 * nums.length];
+
+        if (nums.length > 0) {
+            newArray[2 * nums.length - 1] = nums[nums.length - 1];
+        }
+
+        return newArray;
+    }
+
+
+    /**
+     * Start with 2 int arrays, a and b, of any length. Return how many of the
+     * arrays have 1 as their first element.
+     *
+     * @param a
+     *     The first array.
+     * @param b
+     *     The second array.
+     *
+     * @return
+     *     How many of the given arrays have 1 as their first element.
+     */
+    public static int start1(int[] a, int[] b) {
+        int times = 0;
+
+        if (a.length > 0)
+            if(a[0] == 1) times++;
+
+        if (b.length > 0)
+            if(b[0] == 1) times++;
+
+        return times;
+    }
+
+
+    /**
+     * Given 2 int arrays, each length 2, return a new array length 4
+     * containing all their elements.
+     *
+     * @param a
+     *     The first array of length 2.
+     * @param b
+     *     The second array of length 2.
+     *
+     * @return
+     *     A new array of length 4 containing all the given arrays' elements.
+     */
+    public static int[] plusTwo(int[] a, int[] b) {
+        int[] newArray = new int[4];
+
+        if (a.length == 2 && b.length == 2) {
+            for (int i = 0; i < 2; i++) {
+                newArray[i] = a[i];
+                newArray[i + 2] = b[i];
+            }
+        }
+
+        return newArray;
+    }
+
+
+    /**
+     * Given an array of ints of odd length, look at the first, last, and
+     * middle values in the array and return the largest. The array length
+     * will be a least 1.
+     *
+     * @param nums
+     *     The array of odd length (at least 1).
+     *
+     * @return
+     *     The largest of the given array's first, middle or last elements.
+     */
+    public static int maxTriple(int[] nums) {
+        int max = 0;
+
+        if (nums.length > 0 && nums.length % 2 != 0) {
+            max = nums[0];
+
+            if (max < nums[nums.length - 1])
+                max = nums[nums.length - 1];
+
+            if (max < nums[(nums.length - 1) / 2])
+                max = nums[(nums.length - 1) / 2];
+        }
+
+        return max;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Given 2 int arrays, a and b, return a new array length 2 containing, as
+     * much as will fit, the elements from a followed by the elements from b.
+     * The arrays may be any length, including 0, but there will be 2 or more
+     * elements available between the 2 arrays.
+     *
+     * @param a
+     *     The first array.
+     * @param b
+     *     The second array.
+     *
+     * @return
+     *     A new array of length 2 containing as much as possible of the
+     *     elements of a followed by elements of b.
+     */
+    public static int[] make2(int[] a, int[] b) {
+        int[] newArray = new int[2];
+
+        int j = 0;
+        boolean aTurn = (j == a.length ? false : true);
+        for (int i = 0; i < newArray.length; i++) {
+            if (aTurn) {
+                if (j < a.length) {
+                    newArray[i] = a[j];
+                    j++;
+                    if(j == a.length) {
+                        aTurn = false;
+                        j = 0;
+                    }
+                }
+            }
+            else {
+                if (j < b.length) {
+                    newArray[i] = b[j];
+                    j++;
+                }
+            }
+        }
+
+        return newArray;
+    }
+
 }
