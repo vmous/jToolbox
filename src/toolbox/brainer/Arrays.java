@@ -7,6 +7,8 @@ package toolbox.brainer;
  */
 public class Arrays {
 
+    // -- EASY
+
     /**
      * Given an array of ints, return true if 6 appears as either the first or
      * last element in the array. The array will be length 1 or more.
@@ -665,6 +667,361 @@ public class Arrays {
         }
 
         return arr;
+    }
+
+
+    // -- MEDIUM
+
+
+    /**
+     * Return the number of even ints in the given array. Note: the % "mod"
+     * operator computes the remainder, e.g. 5 % 2 is 1.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The number of the even numbers in the array.
+     */
+    public static int countEvens(int[] nums) {
+        int counter = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) counter++;
+        }
+
+        return counter;
+    }
+
+
+    /**
+     * Return the sum of the numbers in the array, returning 0 for an empty
+     * array. Except the number 13 is very unlucky, so it does not count and
+     * numbers that come immediately after a 13 also do not count.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The sum of the elements of the given array
+     */
+    public static int sum13(int[] nums) {
+        int count = 0;
+        boolean after13 = false;
+
+        if (nums.length > 0) {
+            for (int i = 0; i < nums.length; i++) {
+                if (after13) {
+                    after13 = false;
+                    continue;
+                }
+
+                if (nums[i] == 13) {
+                    after13 = true;
+                    continue;
+                }
+
+                count += nums[i];
+            }
+        }
+
+        return count;
+    }
+
+
+    /**
+     * Given an array of ints, return true if the array contains no 1's and no
+     * 3's.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if the given array doesn't contain neither 1s nor 3s;
+     *     {@code false} otherwise.
+     */
+    public static boolean lucky13(int[] nums) {
+        boolean is = true;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1 || nums[i] == 3) {
+                is = false;
+                break;
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * Given an array of ints, return true if every element is a 1 or a 4.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if every element of the given array are either 1 or 4;
+     *     {@code false} otherwise.
+     */
+    public static boolean only14(int[] nums) {
+        boolean is = true;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 1 && nums[i] != 4) {
+                is = false;
+                break;
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * Given an array of ints, return true if the array contains a 2 next to a
+     * 2 or a 4 next to a 4, but not both.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if there are double 2s or double 4s but not both;
+     *     {@code false} otherwise.
+     */
+    public static boolean either24(int[] nums) {
+        boolean is = false;
+        boolean was2 = false;
+        boolean was4 = false;
+        boolean twice2 = false;
+        boolean twice4 = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) {
+                if (was2)
+                    twice2 = true;
+                else
+                    was2 = true;
+            }
+            else if (nums[i] == 4) {
+                if (was4)
+                    twice4 = true;
+                else
+                    was4 = true;
+            }
+            else {
+                was2 = false;
+                was4 = false;
+            }
+        }
+
+        if (twice2 ^ twice4)
+            is = true;
+
+        return is;
+    }
+
+
+    /**
+     * Given an array of ints, return true if there is a 1 in the array with a
+     * 2 somewhere later in the array.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if inside the given array there is 1 followed by a 2;
+     *     {@code false} otherwise.
+     */
+    public static boolean has12(int[] nums) {
+        boolean is = false;
+        boolean found1 = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) found1 = true;
+
+            if (nums[i] == 2 && found1) {
+                is = true;
+                break;
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Given an array of ints, return true if every 2 that appears in the array
+     * is next to another 2.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if every 2 that appears in the given array comes next
+     *     to another 2; {@code false} otherwise.
+     */
+    public static boolean twoTwo(int[] nums) {
+        boolean is = true;
+        boolean nextIsTwo = false;
+        boolean foundMate = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) {
+                // Found 2
+
+                // If in previous iteration we had a two...
+                if (nextIsTwo) {
+                    // ... then we found some mates.
+                    foundMate = true;
+                }
+                // set for next iteration the two
+                nextIsTwo = true;
+            }
+            else {
+                // Found some other number.
+
+                if (nextIsTwo) {
+                    // If the element next to it is a two...
+                    if (foundMate) {
+                        // ...either it has a mate so everything's cool and
+                        // reseting flags...
+                        foundMate = false;
+                        nextIsTwo = false;
+                    }
+                    else {
+                        // ...or with no mate we have a problem.
+                        is = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Test if the last element in the array is a
+        // two without a mate.
+        if(nextIsTwo && !foundMate) {
+            is = false;
+        }
+
+        return is;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Return an array that is "left shifted" by one -- so {6, 2, 5, 3} returns
+     * {2, 5, 3, 6}. You may modify and return the given array, or return a new
+     * array.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     An array that is "left shifted" by one.
+     */
+    public static int[] shiftLeft(int[] nums) {
+        int[] arr = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            arr[i] = nums[(i + 1) % nums.length];
+        }
+
+        return arr;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Given a non-empty array of ints, return a new array containing the
+     * elements from the original array that come after the last 4 in the
+     * original array. The original array will contain at least one 4. Note
+     * that it is valid in java to create an array of length 0.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     A new array containing all elements from the last occurance of 4
+     *     onwards.
+     */
+    public static int[] post4(int[] nums) {
+        int[] arr;
+        int pos = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 4) pos = i + 1;
+        }
+
+        arr = new int[nums.length - pos];
+
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = nums[pos + i];
+
+        return arr;
+    }
+
+
+    /**
+     * TODO: Gem (without creating a new array)
+     *
+     * Return a version of the given array where all the 10's have been
+     * removed. The remaining elements should shift left towards the start of
+     * the array as needed, and the empty spaces a the end of the array should
+     * be 0. So {1, 10, 10, 2} yields {1, 2, 0, 0}. You may modify and return
+     * the given array or make a new array.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *
+     */
+    public static int[] withoutTen(int[] nums) {
+        int[] arr = new int[nums.length];
+
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 10) {
+                arr[j] = nums[i];
+                j++;
+            }
+        }
+
+        for (; j < arr.length; j++) arr[j] = 0;
+
+        return arr;
+    }
+
+
+    /**
+     * TODO: Gem (check the initialization of max and min)
+     *
+     * Given an array length 1 or more of ints, return the difference between
+     * the largest and smallest values in the array. Note: the built-in
+     * Math.min(v1, v2) and Math.max(v1, v2) methods return the smaller or
+     * larger of two values.
+     *
+     * @param nums
+     *     The array of length 1 or more.
+     *
+     * @return
+     *     The difference between the largest and smallest values in the array.
+     */
+    public static int bigDiff(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < nums.length; i++) {
+            max = Math.max(nums[i], max);
+            min = Math.min(nums[i], min);
+        }
+
+        return max - min;
     }
 
 }

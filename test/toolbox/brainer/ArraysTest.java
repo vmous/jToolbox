@@ -23,6 +23,9 @@ public class ArraysTest {
     }
 
 
+    // -- EASY
+
+
     @Test
     public void testFirstLast6() {
         assertTrue(Arrays.firstLast6(new int[]{1, 2, 6}));
@@ -363,6 +366,197 @@ public class ArraysTest {
         assertArrayEquals(new int[]{}, Arrays.front11(new int[]{}, new int[]{}));
         assertArrayEquals(new int[]{3, 1}, Arrays.front11(new int[]{3}, new int[]{1, 4, 1, 9}));
         assertArrayEquals(new int[]{1}, Arrays.front11(new int[]{1, 4, 1, 9}, new int[]{}));
+    }
+
+
+    // -- MEDIUM
+
+
+    @Test
+    public void testCountEvens() {
+        assertEquals(3, Arrays.countEvens(new int[]{2, 1, 2, 3, 4}));
+        assertEquals(3, Arrays.countEvens(new int[]{2, 2, 0}));
+        assertEquals(0, Arrays.countEvens(new int[]{1, 3, 5}));
+        assertEquals(0, Arrays.countEvens(new int[]{}));
+        assertEquals(1, Arrays.countEvens(new int[]{11, 9, 0, 1}));
+        assertEquals(2, Arrays.countEvens(new int[]{2, 11, 9, 0}));
+        assertEquals(1, Arrays.countEvens(new int[]{2}));
+        assertEquals(2, Arrays.countEvens(new int[]{2, 5, 12}));
+    }
+
+
+    @Test
+    public void testSum13() {
+        assertEquals(6, Arrays.sum13(new int[]{1, 2, 2, 1}));
+        assertEquals(2, Arrays.sum13(new int[]{1, 1}));
+        assertEquals(6, Arrays.sum13(new int[]{1, 2, 2, 1, 13}));
+        assertEquals(4, Arrays.sum13(new int[]{1, 2, 13, 2, 1, 13}));
+        assertEquals(3, Arrays.sum13(new int[]{13, 1, 2, 13, 2, 1, 13}));
+        assertEquals(0, Arrays.sum13(new int[]{}));
+        assertEquals(0, Arrays.sum13(new int[]{13}));
+        assertEquals(0, Arrays.sum13(new int[]{13, 13}));
+        assertEquals(0, Arrays.sum13(new int[]{13, 0, 13}));
+        assertEquals(0, Arrays.sum13(new int[]{13, 1, 13}));
+        assertEquals(14, Arrays.sum13(new int[]{5, 7, 2}));
+        assertEquals(5, Arrays.sum13(new int[]{5, 13, 2}));
+        assertEquals(0, Arrays.sum13(new int[]{0}));
+        assertEquals(0, Arrays.sum13(new int[]{13, 0}));
+    }
+
+
+    @Test
+    public void testLucky13() {
+        assertTrue(Arrays.lucky13(new int[]{0, 2, 4}));
+        assertFalse(Arrays.lucky13(new int[]{1, 2, 3}));
+        assertFalse(Arrays.lucky13(new int[]{1, 2, 4}));
+        assertTrue(Arrays.lucky13(new int[]{2, 7, 2, 8}));
+        assertFalse(Arrays.lucky13(new int[]{2, 7, 1, 8}));
+        assertFalse(Arrays.lucky13(new int[]{3, 7, 2, 8}));
+        assertFalse(Arrays.lucky13(new int[]{2, 7, 2, 1}));
+        assertFalse(Arrays.lucky13(new int[]{1, 2}));
+        assertTrue(Arrays.lucky13(new int[]{2, 2}));
+        assertTrue(Arrays.lucky13(new int[]{2}));
+        assertFalse(Arrays.lucky13(new int[]{3}));
+        assertTrue(Arrays.lucky13(new int[]{}));
+    }
+
+
+    @Test
+    public void testOnly14() {
+        assertTrue(Arrays.only14(new int[]{1, 4, 1, 4}));
+        assertFalse(Arrays.only14(new int[]{1, 4, 2, 4}));
+        assertTrue(Arrays.only14(new int[]{1, 1}));
+        assertTrue(Arrays.only14(new int[]{4, 1}));
+        assertFalse(Arrays.only14(new int[]{2}));
+        assertTrue(Arrays.only14(new int[]{}));
+        assertFalse(Arrays.only14(new int[]{1, 4, 1, 3}));
+        assertFalse(Arrays.only14(new int[]{3, 1, 3}));
+        assertTrue(Arrays.only14(new int[]{1}));
+        assertTrue(Arrays.only14(new int[]{4}));
+        assertFalse(Arrays.only14(new int[]{3, 4}));
+        assertFalse(Arrays.only14(new int[]{1, 3, 4}));
+        assertTrue(Arrays.only14(new int[]{1, 1, 1}));
+        assertFalse(Arrays.only14(new int[]{1, 1, 1, 5}));
+        assertTrue(Arrays.only14(new int[]{4, 1, 4, 1}));
+    }
+
+
+    @Test
+    public void testEither24() {
+        assertTrue(Arrays.either24(new int[]{1, 2, 2}));
+        assertTrue(Arrays.either24(new int[]{4, 4, 1}));
+        assertFalse(Arrays.either24(new int[]{4, 4, 1, 2, 2}));
+        assertFalse(Arrays.either24(new int[]{1, 2, 3, 4}));
+        assertFalse(Arrays.either24(new int[]{3, 5, 9}));
+        assertTrue(Arrays.either24(new int[]{1, 2, 3, 4, 4}));
+        assertTrue(Arrays.either24(new int[]{2, 2, 3, 4}));
+        assertTrue(Arrays.either24(new int[]{1, 2, 3, 2, 2, 4}));
+        assertFalse(Arrays.either24(new int[]{1, 2, 3, 2, 2, 4, 4}));
+        assertFalse(Arrays.either24(new int[]{1, 2}));
+        assertTrue(Arrays.either24(new int[]{2, 2}));
+        assertTrue(Arrays.either24(new int[]{4, 4}));
+        assertFalse(Arrays.either24(new int[]{2}));
+        assertFalse(Arrays.either24(new int[]{}));
+    }
+
+
+    @Test
+    public void testHas12() {
+        assertTrue(Arrays.has12(new int[]{1, 3, 2}));
+        assertTrue(Arrays.has12(new int[]{3, 1, 2}));
+        assertTrue(Arrays.has12(new int[]{3, 1, 4, 5, 2}));
+        assertFalse(Arrays.has12(new int[]{3, 1, 4, 5, 6}));
+        assertTrue(Arrays.has12(new int[]{3, 1, 4, 1, 6, 2}));
+        assertTrue(Arrays.has12(new int[]{2, 1, 4, 1, 6, 2}));
+        assertFalse(Arrays.has12(new int[]{2, 1, 4, 1, 6}));
+        assertFalse(Arrays.has12(new int[]{3, 5, 9}));
+        assertFalse(Arrays.has12(new int[]{3, 5, 1}));
+        assertFalse(Arrays.has12(new int[]{3, 2, 1}));
+        assertTrue(Arrays.has12(new int[]{1, 2}));
+        assertFalse(Arrays.has12(new int[]{1, 1}));
+        assertFalse(Arrays.has12(new int[]{1}));
+        assertFalse(Arrays.has12(new int[]{}));
+    }
+
+
+    @Test
+    public void testTwoTwo() {
+        assertTrue(Arrays.twoTwo(new int[]{4, 2, 2, 3}));
+        assertTrue(Arrays.twoTwo(new int[]{2, 2, 4}));
+        assertFalse(Arrays.twoTwo(new int[]{2, 2, 4, 2}));
+        assertTrue(Arrays.twoTwo(new int[]{1, 3, 4}));
+        assertTrue(Arrays.twoTwo(new int[]{1, 2, 2, 3, 4}));
+        assertFalse(Arrays.twoTwo(new int[]{1, 2, 3, 4}));
+        assertTrue(Arrays.twoTwo(new int[]{2, 2}));
+        assertTrue(Arrays.twoTwo(new int[]{2, 2, 7}));
+        assertFalse(Arrays.twoTwo(new int[]{2, 2, 7, 2, 1}));
+        assertTrue(Arrays.twoTwo(new int[]{4, 2, 2, 2}));
+        assertTrue(Arrays.twoTwo(new int[]{2, 2, 2}));
+        assertFalse(Arrays.twoTwo(new int[]{1, 2}));
+        assertFalse(Arrays.twoTwo(new int[]{2}));
+        assertTrue(Arrays.twoTwo(new int[]{1}));
+        assertTrue(Arrays.twoTwo(new int[]{}));
+        assertTrue(Arrays.twoTwo(new int[]{5, 2, 2, 3}));
+        assertFalse(Arrays.twoTwo(new int[]{2, 2, 5, 2}));
+    }
+
+
+    @Test
+    public void testShiftLeft() {
+        assertArrayEquals(new int[]{2, 5, 3, 6}, Arrays.shiftLeft(new int[]{6, 2, 5, 3}));
+        assertArrayEquals(new int[]{2, 1}, Arrays.shiftLeft(new int[]{1, 2}));
+        assertArrayEquals(new int[]{1}, Arrays.shiftLeft(new int[]{1}));
+        assertArrayEquals(new int[]{}, Arrays.shiftLeft(new int[]{}));
+        assertArrayEquals(new int[]{1, 2, 2, 4, 1}, Arrays.shiftLeft(new int[]{1, 1, 2, 2, 4}));
+        assertArrayEquals(new int[]{1, 1, 1}, Arrays.shiftLeft(new int[]{1, 1, 1}));
+        assertArrayEquals(new int[]{2, 3, 1}, Arrays.shiftLeft(new int[]{1, 2, 3}));
+    }
+
+
+    @Test
+    public void testPost4() {
+        assertArrayEquals(new int[]{1, 2}, Arrays.post4(new int[]{2, 4, 1, 2}));
+        assertArrayEquals(new int[]{2}, Arrays.post4(new int[]{4, 1, 4, 2}));
+        assertArrayEquals(new int[]{1, 2, 3}, Arrays.post4(new int[]{4, 4, 1, 2, 3}));
+        assertArrayEquals(new int[]{2}, Arrays.post4(new int[]{4, 2}));
+        assertArrayEquals(new int[]{3}, Arrays.post4(new int[]{4, 4, 3}));
+        assertArrayEquals(new int[]{}, Arrays.post4(new int[]{4, 4}));
+        assertArrayEquals(new int[]{}, Arrays.post4(new int[]{4}));
+        assertArrayEquals(new int[]{3, 2}, Arrays.post4(new int[]{2, 4, 1, 4, 3, 2}));
+        assertArrayEquals(new int[]{2, 2, 2}, Arrays.post4(new int[]{4, 1, 4, 2, 2, 2}));
+        assertArrayEquals(new int[]{3, 2}, Arrays.post4(new int[]{3, 4, 3, 2}));
+    }
+
+
+    @Test
+    public void testWithoutTen() {
+        assertArrayEquals(new int[]{1, 2, 0, 0}, Arrays.withoutTen(new int[]{1, 10, 10, 2}));
+        assertArrayEquals(new int[]{2, 0, 0}, Arrays.withoutTen(new int[]{10, 2, 10}));
+        assertArrayEquals(new int[]{1, 99, 0}, Arrays.withoutTen(new int[]{1, 99, 10}));
+        assertArrayEquals(new int[]{13, 14, 0, 0}, Arrays.withoutTen(new int[]{10, 13, 10, 14}));
+        assertArrayEquals(new int[]{13, 14, 0, 0, 0}, Arrays.withoutTen(new int[]{10, 13, 10, 14, 10}));
+        assertArrayEquals(new int[]{3, 0, 0}, Arrays.withoutTen(new int[]{10, 10, 3}));
+        assertArrayEquals(new int[]{1}, Arrays.withoutTen(new int[]{1}));
+        assertArrayEquals(new int[]{13, 1}, Arrays.withoutTen(new int[]{13, 1}));
+        assertArrayEquals(new int[]{0}, Arrays.withoutTen(new int[]{10}));
+        assertArrayEquals(new int[]{}, Arrays.withoutTen(new int[]{}));
+    }
+
+
+    @Test
+    public void testBigDiff() {
+        assertEquals(7, Arrays.bigDiff(new int[]{10, 3, 5, 6}));
+        assertEquals(8, Arrays.bigDiff(new int[]{7, 2, 10, 9}));
+        assertEquals(8, Arrays.bigDiff(new int[]{2, 10, 7, 2}));
+        assertEquals(8, Arrays.bigDiff(new int[]{2, 10}));
+        assertEquals(8, Arrays.bigDiff(new int[]{10, 2}));
+        assertEquals(10, Arrays.bigDiff(new int[]{10, 0}));
+        assertEquals(1, Arrays.bigDiff(new int[]{2, 3}));
+        assertEquals(0, Arrays.bigDiff(new int[]{2, 2}));
+        assertEquals(0, Arrays.bigDiff(new int[]{2}));
+        assertEquals(8, Arrays.bigDiff(new int[]{5, 1, 6, 1, 9, 9}));
+        assertEquals(3, Arrays.bigDiff(new int[]{7, 6, 8, 5}));
+        assertEquals(3, Arrays.bigDiff(new int[]{7, 7, 6, 8, 5, 5, 6}));
     }
 
 }
