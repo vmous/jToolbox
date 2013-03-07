@@ -1024,4 +1024,285 @@ public class Arrays {
         return max - min;
     }
 
+
+    /**
+     * Return the sum of the numbers in the array, except ignore sections of
+     * numbers starting with a 6 and extending to the next 7 (every 6 will be
+     * followed by at least one 7). Return 0 for no numbers.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The sum of the numbers in the given array ignoring sections 6-7.
+     */
+    public static int sum67(int[] nums) {
+        int sum = 0;
+        boolean counting = true;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (counting) {
+                if (nums[i] == 6) {
+                    counting = false;
+                    continue;
+                }
+
+                sum += nums[i];
+            }
+            else {
+                if (nums[i] == 7) counting = true;
+            }
+        }
+
+        return sum;
+    }
+
+
+    /**
+     * Given an array of ints, return true if the sum of all the 2's in the
+     * array is exactly 8.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if the sum of all the 2's is exaxtly 8; {@code false}
+     *     otherwise.
+     */
+    public static boolean sum28(int[] nums) {
+        int sum2s = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) sum2s += 2;
+        }
+
+        return (sum2s == 8);
+    }
+
+
+    /**
+     * Given an array of ints, return true if it contains no 1's or it contains
+     * no 4's.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if it contains no 1s or no 4s; {@code false} otherwise.
+     */
+    public static boolean no14(int[] nums) {
+        boolean ones = false;
+        boolean fours = false;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) ones = true;
+            else if (nums[i] == 4) fours = true;
+        }
+
+        return (!ones || !fours);
+    }
+
+
+    /**
+     * Given arrays nums1 and nums2 of the same length, for every element in
+     * nums1, consider the corresponding element in nums2 (at the same index).
+     * Return the count of the number of times that the two elements differ by
+     * 2 or less, but are not equal.
+     *
+     * @param nums1
+     *     The first array.
+     * @param nums2
+     *     The second array.
+     *
+     * @return
+     *     The number of times the two elements on the same position in each
+     *     array differ by 2 or less but are not equal
+     */
+    public static int matchUp(int[] nums1, int[] nums2) {
+        int count = 0;
+
+        for (int i = 0; i < nums1.length; i++) {
+            if (nums1[i] != nums2[i] && Math.abs(nums1[i] - nums2[i]) <= 2) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+
+    /**
+     * Given an array of ints, return true if the array contains either 3 even
+     * or 3 odd values all next to each other.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     {@code true} if contains 3 successive odd of even values.
+     */
+    public static boolean modThree(int[] nums) {
+        boolean is = false;
+        int countOdd = 0;
+        int countEven = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 != 0) {
+                countEven = 0;
+                countOdd++;
+                if (countOdd == 3) {
+                    is = true;
+                    break;
+                }
+            }
+            else {
+                countOdd = 0;
+                countEven++;
+                if (countEven == 3) {
+                    is = true;
+                    break;
+                }
+            }
+        }
+
+        return is;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * Return true if the group of N numbers at the start and end of the array
+     * are the same. For example, with {5, 6, 45, 99, 13, 5, 6}, the ends are
+     * the same for n=0 and n=2, and false for n=1 and n=3. You may assume that
+     * n is in the range 0..nums.length inclusive.
+     *
+     * @param nums
+     *     The array.
+     * @param len
+     *     The length of the group
+     *
+     * @return
+     *     {@code true} if the the group of given length at the start and the
+     *     end of the given array are the same; {@code false} otherwise.
+     */
+    public static boolean sameEnds(int[] nums, int len) {
+        boolean is = true;
+
+        if (len >= 0 || len <= nums.length) {
+            for (int i = 0; i < len; i++) {
+                if (nums[i] != nums[nums.length - len + i]) {
+                    is = false;
+                    break;
+                }
+            }
+
+        }
+
+        return is;
+    }
+
+
+    /**
+     * TODO: Gem
+     *
+     * For each multiple of 10 in the given array, change all the values
+     * following it to be that multiple of 10, until encountering another
+     * multiple of 10. So {2, 10, 3, 4, 20, 5} yields
+     * {2, 10, 10, 10, 20, 20}.
+     *
+     * @param nums
+     *     The arrray.
+     *
+     * @return
+     *     The given array with all elements following a number that is a
+     *     multiple of ten, changed to that number, until the next multiple
+     *     of ten is encountered.
+     */
+    public static int[] tenRun(int[] nums) {
+        boolean isInChangeMode = false;
+        int changer = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (isInChangeMode) {
+                if (nums[i] % 10 == 0) {
+                    changer = nums[i];
+                }
+                else {
+                    nums[i] = changer;
+                }
+            }
+            else {
+                if (nums[i] % 10 == 0) {
+                    isInChangeMode = true;
+                    changer = nums[i];
+                }
+            }
+        }
+
+        return nums;
+    }
+
+
+    /**
+     * TODO Gem
+     *
+     * We'll say that an element in an array is "alone" if there are values
+     * before and after it, and those values are different from it. Return a
+     * version of the given array where every instance of the given value which
+     * is alone is replaced by whichever value to its left or right is larger.
+     *
+     * @param nums
+     *     The array.
+     * @param val
+     *     The value.
+     *
+     * @return
+     *     The given array with all the 'alone' instances of the given value in
+     *     it replaced by whichever value to its left or right is larger.
+     */
+    public static int[] notAlone(int[] nums, int val) {
+        for (int i = 1; i < nums.length - 1 ; i++) {
+            if (nums[i] == val) {
+                if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1]) {
+                    nums[i] = Math.max(nums[i - 1], nums[i + 1]);
+                }
+            }
+        }
+
+        return nums;
+    }
+
+
+    /**
+     * TODO Gem
+     *
+     * Return a version of the given array where each zero value in the array
+     * is replaced by the largest odd value to the right of the zero in the
+     * array. If there is no odd value to the right of the zero, leave the
+     * zero as a zero.
+     *
+     * @param nums
+     *     The array.
+     *
+     * @return
+     *     The version of the given array where each occurrence of a zero is
+     *     replaced by the largest no odd valued to its right if available.
+     */
+    public static int[] zeroMax(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                int toReplace = 0;
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (nums[j] % 2 != 0) {
+                        toReplace = Math.max(toReplace, nums[j]);
+                    }
+                }
+                nums[i] = toReplace;
+            }
+        }
+
+        return nums;
+    }
+
 }
