@@ -5,7 +5,6 @@ package toolbox.design.patterns.structural.facade;
  * facade.
  *
  * @author billy
- *
  */
 public class HardDrive {
 

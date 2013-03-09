@@ -5,7 +5,6 @@ package toolbox.design.patterns.structural.facade;
  * delegates client requests to the appropriate objects.
  *
  * @author billy
- *
  */
 public class Computer {
     private static final long BOOT_ADDRESS = 0x7c00;
