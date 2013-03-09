@@ -7,12 +7,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import toolbox.design.patterns.creational.prototype.Note.Accidental;
-import toolbox.design.patterns.creational.prototype.Note.Helmholtz;
-import toolbox.design.patterns.creational.prototype.Note.Octave;
-import toolbox.design.patterns.creational.prototype.Note.Value;
-import toolbox.design.patterns.creational.prototype.SheetMusic.Clef;
-import toolbox.design.patterns.creational.prototype.SheetMusic.Meter;
+import toolbox.design.patterns.creational.prototype.Note.*;
+import toolbox.design.patterns.creational.prototype.SheetMusic.*;
 
 /**
  * Unit test for the Prototype creational design pattern.

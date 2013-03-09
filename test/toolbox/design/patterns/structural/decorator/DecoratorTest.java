@@ -6,17 +6,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import toolbox.design.patterns.structural.decorator.Computer;
-import toolbox.design.patterns.structural.decorator.DVD;
-import toolbox.design.patterns.structural.decorator.HDD;
-import toolbox.design.patterns.structural.decorator.Monitor;
-
 /**
  * Unit test for the Decorator structural design pattern.
  *
  * @author billy
  */
 public class DecoratorTest {
+
 	private String message;
 	private Product computer;
 
@@ -38,4 +34,5 @@ public class DecoratorTest {
 		message = "You're getting a " + computer.getDescription() + " for " + computer.getCost() + " Euros.";
 		assertEquals("You're getting a computer and a hdd and a dvd and a monitor for 599.0 Euros.", message);
 	}
+
 }

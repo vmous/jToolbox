@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import toolbox.design.patterns.creational.factorymethod.UserAuthenticationFactory.AuthenticationType;
+//import toolbox.design.patterns.creational.factorymethod.UserAuthenticationFactory.AuthenticationType;
 
 /**
  * Unit test for the Factory Method creational design pattern.
@@ -26,8 +26,8 @@ public class FactoryMethodTest {
     @Test
     public void testIt() {
 		UserAuthenticationFactory factory = new UserAuthenticationFactory();
-        UserAuthentication authOpenLdap = factory.getUserAuthenication(AuthenticationType.OPEN_LDAP);
-		UserAuthentication authActiveDirectory = factory.getUserAuthenication(AuthenticationType.ACTIVE_DIRECTORY);
+        UserAuthentication authOpenLdap = factory.getUserAuthenication(UserAuthenticationFactory.AuthenticationType.OPEN_LDAP);
+		UserAuthentication authActiveDirectory = factory.getUserAuthenication(UserAuthenticationFactory.AuthenticationType.ACTIVE_DIRECTORY);
 
 		// Simulates that the authentication against an Active Directory fails.
 		assertFalse(authActiveDirectory.authenticate());
