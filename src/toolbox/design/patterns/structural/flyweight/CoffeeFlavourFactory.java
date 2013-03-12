@@ -9,7 +9,6 @@ import java.util.List;
  * instance or creates one, if none exists.
  *
  * @author billy
- *
  */
 public class CoffeeFlavourFactory {
 

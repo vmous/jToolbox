@@ -5,7 +5,6 @@ package toolbox.design.patterns.structural.flyweight;
  * on extrinsic state.
  *
  * @author billy
- *
  */
 public interface CoffeeOrder {
 

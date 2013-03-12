@@ -4,7 +4,6 @@ package toolbox.design.patterns.structural.flyweight;
  * Context. The extrinsic state which concrete flyweight objects act upon.
  *
  * @author billy
- *
  */
 public class CoffeeOrderContext {
 

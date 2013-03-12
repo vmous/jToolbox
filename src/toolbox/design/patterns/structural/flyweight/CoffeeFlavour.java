@@ -5,7 +5,6 @@ package toolbox.design.patterns.structural.flyweight;
  * intrinsic state, if any. Such object must be sharable.
  *
  * @author billy
- *
  */
 public class CoffeeFlavour implements CoffeeOrder {
 
