@@ -4,11 +4,12 @@ import static toolbox.web.sitemap.AbstractSitemapParser.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -28,7 +29,7 @@ public class SAXSitemapHandler extends DefaultHandler {
 
     private WebPage currentWebPage;
 
-    private StringBuilder builder;
+    private String characters;
 
 
     /**
@@ -49,7 +50,7 @@ public class SAXSitemapHandler extends DefaultHandler {
     public void characters(char[] ch, int start, int length)
             throws SAXException {
         super.characters(ch, start, length);
-        builder.append(ch, start, length);
+        this.characters = new String(ch, start, length);
     }
 
 
@@ -61,7 +62,6 @@ public class SAXSitemapHandler extends DefaultHandler {
         super.startDocument();
 
         webPages = new ArrayList<WebPage>();
-        builder = new StringBuilder();
     }
 
 
@@ -73,7 +73,7 @@ public class SAXSitemapHandler extends DefaultHandler {
             Attributes attributes) throws SAXException {
         super.startElement(uri, localName, qName, attributes);
 
-        if (localName.equalsIgnoreCase(URL)) {
+        if (qName.equalsIgnoreCase(URL)) {
             this.currentWebPage = new WebPage();
         }
     }
@@ -87,35 +87,29 @@ public class SAXSitemapHandler extends DefaultHandler {
             throws SAXException {
         super.endElement(uri, localName, qName);
         if (this.currentWebPage != null) {
-            if (localName.equalsIgnoreCase(LOC)) {
+            if (qName.equalsIgnoreCase(LOC)) {
                 try {
-                    currentWebPage.setLocation(new URL(builder.toString()));
+                    currentWebPage.setLocation(new URL(characters));
                 }
                 catch (MalformedURLException murle) {
                     murle.printStackTrace();
                 }
             }
-            else if (localName.equalsIgnoreCase(LASTMOD)) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-
-                try {
-                    currentWebPage.setLastModified(sdf.parse(builder.toString()));
-                }
-                catch (ParseException pe) {
-                    pe.printStackTrace();
-                }
+            else if (qName.equalsIgnoreCase(LASTMOD)) {
+                // The bellow formatter corresponds to "yyyy-MM-dd'T'HH:mm:ssZZ"
+                DateTimeFormatter dtf = ISODateTimeFormat.dateTimeNoMillis();
+                DateTime dt = dtf.parseDateTime(characters);
+                currentWebPage.setLastModified(dt.toDate());
             }
-            else if (localName.equalsIgnoreCase(CHANGEFREQ)) {
-                currentWebPage.setChangeFrequency(builder.toString());
+            else if (qName.equalsIgnoreCase(CHANGEFREQ)) {
+                currentWebPage.setChangeFrequency(characters);
             }
-            else if (localName.equalsIgnoreCase(PRIORITY)) {
-                currentWebPage.setChangeFrequency(builder.toString());
+            else if (qName.equalsIgnoreCase(PRIORITY)) {
+                currentWebPage.setChangeFrequency(characters);
             }
-            else if (localName.equalsIgnoreCase(URL)) {
+            else if (qName.equalsIgnoreCase(URL)) {
                 webPages.add(currentWebPage);
             }
-
-            builder.setLength(0);
         }
     }
 
