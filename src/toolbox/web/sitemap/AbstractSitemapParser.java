@@ -52,7 +52,7 @@ public abstract class AbstractSitemapParser implements SitemapParser {
         URLConnection conn = urlSitemap.openConnection();
         InputStream is = conn.getInputStream();
 
-        if (conn.getContentEncoding().equals("gzip"))
+        if ("application/x-gzip".equals(conn.getContentType()))
             is = new GZIPInputStream(is);
 
         return is;
