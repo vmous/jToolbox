@@ -24,7 +24,7 @@ public class SAXSitemapParser extends AbstractSitemapParser {
      * @param urlSitemap
      *     The URL of the sitemap.
      */
-    protected SAXSitemapParser(URL urlSitemap) {
+    public SAXSitemapParser(URL urlSitemap) {
         super(urlSitemap);
     }
 
