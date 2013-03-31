@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import net.htmlparser.jericho.Source;
+
 public class URLManipulator {
     public static final String DISALLOW = "Disallow:";
 
@@ -377,6 +379,44 @@ public class URLManipulator {
     }
 
     /**
+     * <p>
+     * Extracts the content delimited by given strings (exclusive) out of an
+     * HTML page. The result is stripped off its markup and then returned.
+     * </p>
+     *
+     * <p>
+     * TODO: This method needs to be reworked since there are corner cases it
+     * doesn't handle correctly. Maybe using jericho.
+     * </p>
+     *
+     * @param htmlText
+     *     The HTML page as a string.
+     * @param startMark
+     *     The string denoting the start of the content to be extracted.
+     * @param endMark
+     *     The string denoting the end of the content to be extracted.
+     *
+     * @return
+     *     A string of the content that was extracted. If no such content could
+     *     be extracted the empty string is returned.
+     */
+    public static String extractContentStrippingMarkup(String htmlText, String startMark, String endMark) {
+        String content = "";
+
+        int startMarkIndex = htmlText.indexOf(startMark);
+        int endMarkIndex = htmlText.indexOf(endMark);
+
+        if (startMarkIndex != -1 && endMarkIndex != -1) {
+            startMarkIndex += startMark.length();
+            content = htmlText.substring(startMarkIndex, endMarkIndex);
+            Source src = new Source(content);
+            content = src.getTextExtractor().toString();
+        }
+
+        return content;
+    }
+
+    /**
      * Construct a save path using the given file-system path and URL.
      *
      * @param fsPath
@@ -534,4 +574,5 @@ public class URLManipulator {
             //System.err.println(e.toString());
         }
     }
+
 }
